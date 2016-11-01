@@ -1,8 +1,25 @@
 package project.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
-public class UserService {
+import project.persistence.entities.User;
 
+public interface UserService {
+	/**
+	 * Vistar notandann í grunni
+	 * @param user
+	 * @return
+	 */
+	User save(User user);
+	
+	void delete(User user);
+	
+	List<User> findAll();
+	
+	List<User> findAllReverseOrder();
+	
+	User findOne(Long id);
+	
+	List<User> findByName(String name);
+	
 }
