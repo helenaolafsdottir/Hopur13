@@ -1,82 +1,79 @@
 package project.persistence.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.Date;
+
+import javax.persistence.*;
+
 
 @Entity
+@Table(name = "userInformation")
 public class User {
-
-    // Declare that this attribute is the id
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
-    private String email;
-    private String username;
-    private String password;
-
-    // Notice the empty constructor, because we need to be able to create an empty PostitNote to add
-    // to our model so we can use it with our form
-    public User() {
-    }
-    
-    public User(String name, String email, String username, String password) {
-        this.name = name;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-    }
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    } 
-    
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }    
-
-    // This is for easier debugging.
-    @Override
-    public String toString() {
-        return String.format(
-                "User[name=%s, email=%s, username=%s, password=%s]",
-                name,email,username,password);
-    }
-    
-    
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String userName;
+	private String password;
+	private String name;
+	private String email;
+	private Date createDate;
+	
+//	public User(String userName, String password, String name, String email){
+//		this.userName = userName;
+//		this.password = password;
+//		this.name = name;
+//		this.email = email;
+//	}
+	
+	public User(){
+		
+	}
+	
+	public Long getId() {
+		return this.id;
+	}
+	
+	public void setId(Long newId) {
+		this.id = newId;
+	}
+	
+	public String getUserName() {
+		return this.userName;
+	}
+	
+	public void setUserName(String newUserName) {
+		this.userName = newUserName;
+	}
+	
+	public String getPassword() {
+		return this.password;
+	}
+	
+	public void setPassword(String newPassword) {
+		this.password = newPassword;
+	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+	
+	public void setEmail(String newEmail) {
+		this.email = newEmail;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public void setName(String newName) {
+		this.name = newName;
+	}
+	
+	public Date getCreateDate(){
+		return this.createDate;
+	}
+	
+	public void setCreateDate(Date createDate){
+		this.createDate = createDate;
+	}
+	
 }
