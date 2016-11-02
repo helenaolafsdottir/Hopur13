@@ -6,15 +6,19 @@
 <html lang="en">
 
     <head>
-        <title>Project Title</title>
+        <title>Uppskriftabankinn</title>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>"/>
     </head>
     <body>
 
-    <h1>HBV501G Project Spring Boot Skeleton</h1>
-    <p>This skeleton of a Spring Boot Web project was made to help groups get started on their projects without to much hassle.</p>
+    <h1>Uppskriftabankinn</h1>
+    <p>Uppskrifabankinn is a fun place for every food lover.</p>
+    <p>Here you can share your favourite recipes with the world and get great ideas from other food lovers.</p>
 
     <ul>
-        <li><a href="/postit">Click here for Persistence Layer Demo</a></li>
+        <li><a href="/recipes">Click to get a list of all the recipes</a></li>
+        <li><a href="/userbla">Click to sign up to Uppskriftabankinn</a></li>
+        <li><a href="/createRecipe">Click to create a new recipe</a></li>
     </ul>
     </body>
     <footer>Class HBV501G, University of Iceland, Fall 2015</footer>

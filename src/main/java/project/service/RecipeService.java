@@ -1,8 +1,30 @@
 package project.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
-public class RecipeService {
 
+import project.persistence.entities.Recipe;
+
+public interface RecipeService {
+	/**
+	 * Vistar uppskrift í grunni
+	 * @param recipe
+	 * @return
+	 */
+	Recipe save(Recipe recipe);
+	
+	void delete(Recipe recipe);
+	
+	List<Recipe> findAll();
+	
+	List<Recipe> findAllReverseOrder();
+	
+	Recipe findByRecipeName(String recipeName);
+	Recipe findById(Long id);
+	
+	Recipe findOne(Long id);
+	
+	//List<Recipe> findBySearchconditionAndSearchtype(String searchCondition, String searchType);
+	
+   
 }

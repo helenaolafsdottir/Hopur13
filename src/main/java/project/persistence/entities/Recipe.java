@@ -28,15 +28,15 @@ public class Recipe {
     public Recipe() {
     }
 /*
-    public Recipe(String recipeName, String recipeGroup, String ingredients, User user, String instructions, String image) {
+    public Recipe(String recipeName, String recipeGroup, String ingredients, String username, String instructions, String image) {
         this.recipeName = recipeName;
         this.recipeGroup = recipeGroup;
         this.ingredients = ingredients;
-        this.user = user;
+        this.username = username;
         this.instructions = instructions;
-        this.image = image;
+        this.image = image	;
     }
-    */
+   */
     public Long getId() {
         return id;
     }
@@ -73,7 +73,7 @@ public class Recipe {
         return username;
     }
 
-    public void setUser(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
     

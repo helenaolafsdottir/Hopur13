@@ -10,11 +10,15 @@ import project.persistence.entities.User;
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     Recipe save(Recipe recipe);
+    
     void delete(Recipe recipe);
     
     List<Recipe> findAll();
     
     Recipe findOne(Long id);
+    
+    Recipe findByRecipeName(String recipeName);
+    Recipe findById(Long id);
     
    // List<Recipe> findByIngredientsAndRecipeName(String ingredients, String recipeName);
 	

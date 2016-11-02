@@ -1,4 +1,9 @@
 
+body{
+	background: #A9E2F3;
+}
+
+
 table.notes {
     border: 1px black solid;
 }
