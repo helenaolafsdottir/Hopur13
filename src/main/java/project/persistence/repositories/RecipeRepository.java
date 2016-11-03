@@ -13,6 +13,9 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     
     void delete(Recipe recipe);
     
+    List<Recipe> findByUsername(String search);
+    List<Recipe> findByRecipeNameContaining(String search);
+    List<Recipe> findByIngredientsContaining(String search);
     List<Recipe> findAll();
     
     Recipe findOne(Long id);

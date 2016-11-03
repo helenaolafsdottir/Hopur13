@@ -52,10 +52,25 @@ public class SearchServiceImplementation implements SearchService {
     public Recipe findOne(Long id) {
         return repository.findOne(id);
     }
-    /*
-    @Override
-    public List<Recipe> findBySearchconditionAndSearchtype(String searchCondition, String searchType) {
-        return repository.findBySearchconditionAndSearchtype(searchCondition, searchType);
-    }
-    */
+   
+	@Override
+	public List<Recipe> findAllWithCond(String searchcond, String search) {
+		if (searchcond.equals("username")) {
+			List<Recipe> recipes = repository.findByUsername(search);
+			return recipes;
+	
+		}else if (searchcond.equals("recipe_name")) {
+			List<Recipe> recipes = repository.findByRecipeNameContaining(search);
+			return recipes;
+			
+		}else if (searchcond.equals("ingredients")) {
+			List<Recipe> recipes = repository.findByIngredientsContaining(search);
+			return recipes;
+			
+		} else {
+			List<Recipe> recipes = null;
+			return recipes;
+		}
+	}
+	
 }
