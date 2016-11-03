@@ -14,6 +14,7 @@ import project.service.RecipeService;
 public class RecipeServiceImplementation implements RecipeService{
 	 
 		RecipeRepository repository;
+
 	    
 	    // Dependency Injection
 		@Autowired
@@ -64,4 +65,17 @@ public class RecipeServiceImplementation implements RecipeService{
 			return repository.findById(id);
 		}
 
+
+	//	@Override
+		//public List<Recipe> findFirstThreeRecipes() {
+		//	return repository.findFirstThreeRecipes();
+		//}
+
+/*
+		@Override
+		public Recipe insertFirstRecipe() {
+			
+			return repository.insertFirstRecipe();
+		}
+*/
 }

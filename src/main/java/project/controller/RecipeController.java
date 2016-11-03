@@ -26,9 +26,24 @@ public class RecipeController {
 
 	@Autowired
 	public RecipeController(RecipeService recipeService){
+		
 		this.recipeService = recipeService;
 	}
-    
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String indexViewGet(Model model){
+		
+	//	model.addAttribute("recipes", recipeService.findFirstThreeRecipes());
+		model.addAttribute("recipe1", recipeService.findById(1L));
+		model.addAttribute("recipe2", recipeService.findById(2L));
+		model.addAttribute("recipe3", recipeService.findById(3L));
+		model.addAttribute("recipe4", recipeService.findById(4L));
+		model.addAttribute("recipe5", recipeService.findById(5L));
+		model.addAttribute("recipe6", recipeService.findById(6L));
+		
+		return "Index";
+	}
+	
     @RequestMapping(value = "/recipes", method = RequestMethod.GET)
 	public String recipeViewGet(Model model){
 		

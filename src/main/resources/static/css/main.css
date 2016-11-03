@@ -4,15 +4,15 @@ body {
 	margin: 0;
 	padding: 0;
 }
-
 .nav {
-	height: 200px;
+	height: 250px;
 	background: #898176;
 	text-align: center;
 	list-style: none;
 	margin: 0;
 	overflow: hidden;
 	clear: both;
+	padding: 0% 7%;
 }
 header ul {
 	padding: 0;
@@ -20,7 +20,7 @@ header ul {
 }
 header h1 {
 	font-family: 'bree serif', serif;
-	font-size: 275%;
+	font-size: 300%;
 	text-transform: uppercase;
 	color: #f1f1f1;
 	text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
@@ -28,15 +28,14 @@ header h1 {
 	word-wrap: break-word;			
 	font-weight: bold;
 	margin:0;
-	padding: 25px 25px 0px 25px;
-	
-	
-	
+	padding: 50px 25px 18px 25px;
 }
+
 main {
-	margin: 3% 5%;	
+	margin: 2% 8.5%;	
 }
-.nav > li {
+
+.nav > li a{
 	display: inline-block;
 	white-space: nowrap;
 	padding: 15px 30px;
@@ -45,8 +44,13 @@ main {
 	text-align: center;
 	text-decoration: none;
 	float:left;
+	bottom: 0;
+	left:0;
+	display: inline;
+	font-weight: bold;
 }
-.loginbutton, .signupbutton {
+
+.loginbutton li a , .signupbutton li a {
 	display: inline-block;
 	white-space: nowrap;
 	padding: 15px 30px;
@@ -55,25 +59,84 @@ main {
 	text-align: center;
 	text-decoration: none;
 	float:right;
+	
 }
 
-.nav > li:hover {
-	background-color: ;
-}
-.nav a:link, a:visited, a:active {
-	color: black;
+
+.nav a:link, .nav a:visited, .nav a:active {
+	color: white;
 	text-decoration: none;
 }
- a:hover {
+.nav a:hover {
  	text-decoration: none;
- 	color: black;
+ 	color: white;
  	font-weight: bold;
+	overflow: hidden;
+	background-color:#635C54;
+ }
+ 
+ .forsiduUppskriftir h2 {
+ 	color:#6E675E;
+ 	font-weight: bold;
+ 	margin:  5px 0px;
+ 	text-align: left;
+ }
+ 
+ .forsiduUppskriftirTakki {
+ 	position: absolute;
+	padding: 0.5em;
+	width: 25.5%;
+	background-color: #898176;
+	border: none;	
+	font-size: 120%;
+	font-weight: bold;
+	color:white;
+	text-align: center;
+	border-bottom: none;
+	text-decoration: none;
+ }
+ .forsiduUppskriftirTakki:hover {
+ 	background-color: #6E675E;
+ }
+ 
+ 
+ .forsiduUppskrift1, .forsiduUppskrift4 {
+ 	height: 450px;
+  	width: 32%;
+  	display: inline-block;
+  	padding: 1% 1% 1% 0%;
+  	float:left;
+ }
+ .forsiduUppskrift2, .forsiduUppskrift5 {
+ 	postition:top;
+ 	height: 450px;
+  	width: 32%;
+  	display: inline-block;
+  	padding: 1% 1% 1% 1%;
+  	
+ }
+ .forsiduUppskrift3, .forsiduUppskrift6 {
+	postition:top;
+	height: 450px;
+  	width: 32%;
+  	display: inline-block;
+	padding: 1% 0% 1% 1%;
+  	float:right
 
  }
-
+.forsiduUppskriftir img{
+	position: top;
+	width: 100%;
+	max-height: 250px;
+	overflow:hidden;	
+}
 footer {
-position: absolute;
-bottom:0;	
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color:#898176;
+  text-align: center;
 }
 
 table.notes {

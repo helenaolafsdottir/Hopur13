@@ -13,14 +13,13 @@ public class Recipe {
 	// Declare that this attribute is the id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String recipeName;
-    private String recipeGroup;
-    private String ingredients;
-    private String username;
-    private String instructions;
-    private String image;
+	public Long id;
+    public String recipeName;
+    public String recipeGroup;
+    public String ingredients;
+    public String username;
+    public String instructions;
+    public String image;
     
 
     // Notice the empty constructor, because we need to be able to create an empty PostitNote to add

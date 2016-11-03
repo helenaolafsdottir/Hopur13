@@ -24,6 +24,10 @@ public interface RecipeService {
 	
 	Recipe findOne(Long id);
 	
+	
+	//List<Recipe> findFirstThreeRecipes();
+	//Recipe insertFirstRecipe();
+	
 	//List<Recipe> findBySearchconditionAndSearchtype(String searchCondition, String searchType);
 	
    
