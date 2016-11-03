@@ -25,14 +25,14 @@ public class SearchController {
         this.searchService = searchService;
     }
     
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
+  /*  @RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String searchViewGet(Model model){
 		//model.addAttribute("recipe", new Recipe());
 		
 		//model.addAttribute("recipes", searchService.findAllReverseOrder());
 		
-		return "search/Search";
-	}
+		return "Index";
+	}*/ 
     
     @RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String searchViewPost(@RequestParam("searchcond") String searchcond,@RequestParam("search") String search, Model model){
