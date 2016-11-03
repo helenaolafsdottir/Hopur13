@@ -92,12 +92,5 @@ public class Recipe {
     public void setImage(String image) {
         this.image = image;
     }
-    /*
-    // This is for easier debug.
-    @Override
-    public String toString() {
-        return String.format(
-                "Recipe[recipeName=%s, recipeGroup=%s, ingredients=%s, user=%s, instructions=%s, image=%s]",
-                recipeName,recipeGroup,ingredients,user,instructions,image);
-    }*/
+  
 }
