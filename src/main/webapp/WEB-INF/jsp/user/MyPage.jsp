@@ -10,12 +10,13 @@
     <head>
         <title>Uppskriftabankinn</title>
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>"/>  
+        <meta charset="UTF-8"> 
     </head>
     <body>
 		<header>
     		<ul class="nav">
     		    <h1>Uppskriftabankinn</h1>
-    			<li><a href="#">Home</a></li>
+    			<li><a href="/">Home</a></li>
     			<li><a href="/recipes">Recipes</a></li>
     			<li><a href="#">My Page</a></li>
     			

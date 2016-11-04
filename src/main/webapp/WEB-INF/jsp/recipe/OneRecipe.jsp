@@ -8,7 +8,8 @@
 
 <head>
 	<title>Uppskriftabankinn</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>"/>  
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>"/>
+    <meta charset="UTF-8">   
 </head>
 <body>
 	<header>

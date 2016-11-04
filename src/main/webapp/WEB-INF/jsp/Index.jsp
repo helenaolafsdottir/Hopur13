@@ -2,14 +2,15 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>i
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
 
 <html lang="en">
 
     <head>
         <title>Uppskriftabankinn</title>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>"/>  
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>"/>
+        <meta charset="UTF-8">  
     </head>
     <body>
 		<header>
@@ -37,37 +38,37 @@
     	</header>
     	<main>
 		    <section class="forsiduUppskriftir">
-		    	<h2>Vinsï¿½lar Kï¿½kuuppskriftir</h2>
+		    	<h2>Vinsælar Kökuuppskriftir</h2>
 		    	<section class="forsiduUppskrift1">
 		    		<a href="/recipes/${recipe1.id}"><img src="${recipe1.image}"/></a>
 		    		<h3>${recipe1.recipeName}</h3>
-		    		<a href="/recipes/${recipe1.id}" class="forsiduUppskriftirTakki">Skoï¿½a uppskrift</a>
+		    		<a href="/recipes/${recipe1.id}" class="forsiduUppskriftirTakki">Skoða uppskrift</a>
 		    	</section>
 		    	<section class="forsiduUppskrift2">
 		    		<a href="/recipes/${recipe2.id}"><img src="${recipe2.image}"/></a>
 		    		<h3>${recipe2.recipeName}</h3>
-		    		<a href="/recipes/${recipe2.id}" class="forsiduUppskriftirTakki">Skoï¿½a uppskrift</a>
+		    		<a href="/recipes/${recipe2.id}" class="forsiduUppskriftirTakki">Skoða uppskrift</a>
 		    	</section>
 		    	<section class="forsiduUppskrift3">
 		    		<a href="/recipes/${recipe3.id}"><img src="${recipe3.image}"/></a>
 		    		<h3>${recipe3.recipeName}</h3>
-		    		<a href="/recipes/${recipe3.id}" class="forsiduUppskriftirTakki">Skoï¿½a uppskrift</a>
+		    		<a href="/recipes/${recipe3.id}" class="forsiduUppskriftirTakki">Skoða uppskrift</a>
 		    	</section>
-		    	<h2>Vinsï¿½lir Rï¿½ttir</h2>
+		    	<h2>Vinsælir Réttir</h2>
 		    	<section class="forsiduUppskrift4">
 		    		<a href="/recipes/${recipe4.id}"><img src="${recipe4.image}"/></a>
 		    		<h3>${recipe4.recipeName}</h3>
-		    		<a href="/recipes/${recipe4.id}" class="forsiduUppskriftirTakki">Skoï¿½a uppskrift</a>
+		    		<a href="/recipes/${recipe4.id}" class="forsiduUppskriftirTakki">Skoða uppskrift</a>
 		    	</section>
 		    	<section class="forsiduUppskrift5">
 		    		<a href="/recipes/${recipe5.id}"><img src="${recipe5.image}"/></a>
 		    		<h3>${recipe5.recipeName}</h3>
-		    		<a href="/recipes/${recipe5.id}" class="forsiduUppskriftirTakki">Skoï¿½a uppskrift</a>
+		    		<a href="/recipes/${recipe5.id}" class="forsiduUppskriftirTakki">Skoða uppskrift</a>
 		    	</section>
 		    	<section class="forsiduUppskrift6">
 		    		<a href="/recipes/${recipe6.id}"><img src="${recipe6.image}"/></a>
 		    		<h3>${recipe6.recipeName}</h3>
-		    		<a href="/recipes/${recipe6.id}" class="forsiduUppskriftirTakki">Skoï¿½a uppskrift</a>
+		    		<a href="/recipes/${recipe6.id}" class="forsiduUppskriftirTakki">Skoða uppskrift</a>
 		    	</section>
 		    </section>
     	</main>
