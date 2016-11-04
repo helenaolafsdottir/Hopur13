@@ -17,8 +17,8 @@
 	    		<li><a href="/">Home</a></li>
 	    		<li><a href="#">Recipes</a></li>
 	    		<li><a href="/userbla">My Page</a></li>
-	    		<div class="signupbutton"><li><a href="userbla">Signup</a></li></div>
-    			<div class="loginbutton"><li><a href="#">Login</a></li></div>
+	    		<div class="signupbutton"><li><a href="/userbla">Signup</a></li></div>
+    			<div class="loginbutton"><li><a href="/login">Login</a></li></div>
 	    	</ul>
 	    </header>
 

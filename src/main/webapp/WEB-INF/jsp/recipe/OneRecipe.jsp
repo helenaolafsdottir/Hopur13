@@ -18,7 +18,7 @@
 	    	<li><a href="/recipes">Recipes</a></li>
 	    	<li><a href="/userbla">My Page</a></li>
 	    	<div class="signupbutton"><li><a href="../userbla">Signup</a></li></div>
-    		<div class="loginbutton"><li><a href="#">Login</a></li></div>s
+    		<div class="loginbutton"><li><a href="../login">Login</a></li></div>s
 	    </ul>
 	</header>
 	<main>
