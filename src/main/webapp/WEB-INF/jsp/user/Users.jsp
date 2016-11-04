@@ -36,11 +36,11 @@
 			</tr>
 			<tr>
 				<td>Password:</td>
-				<td><sf:textarea path="password" type="text" placeholder="Password here"/></td>
+				<td><sf:input name="password" type="password" path="password" placeholder="Password here"/></td>
 			</tr>
 			<tr>
 				<td>Password again:</td>
-				<td><sf:textarea path="passwordConfirm" type="text" placeholder="Password again here"/></td>
+				<td><sf:input name="password" type="password" path="passwordConfirm" placeholder="Password again here"/></td>
 			</tr>
 			<tr>
 				<td>Email:</td>
