@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import antlr.collections.List;
+import project.CreateRecipeValidator;
+import project.UserValidator;
 import project.persistence.entities.PostitNote;
 import project.persistence.entities.Recipe;
 import project.persistence.entities.User;
@@ -23,10 +26,11 @@ public class RecipeController {
 
 	
 	RecipeService recipeService;
+	CreateRecipeValidator recipeValidator;
 
 	@Autowired
-	public RecipeController(RecipeService recipeService){
-		
+	public RecipeController(RecipeService recipeService, CreateRecipeValidator recipeValidator){
+		this.recipeValidator = recipeValidator;
 		this.recipeService = recipeService;
 	}
 	
@@ -73,12 +77,17 @@ public class RecipeController {
 	
 
 	@RequestMapping(value = "/createRecipe", method = RequestMethod.POST)
-	public String createRecipeViewPost(@ModelAttribute("recipe") Recipe formRecipe, Model model){
-	//	Date createDate = new Date();
-	//	formRecipe.setCreateDate(createDate);
+	public String createRecipeViewPost(@ModelAttribute("recipe") Recipe formRecipe, BindingResult bindingResult, Model model){
+		
+		recipeValidator.validate(formRecipe, bindingResult);
+		if(bindingResult.hasErrors()){
+			return "recipe/CreateRecipe";
+		}
 		recipeService.save(formRecipe);
 		
-		model.addAttribute("recipes", recipeService.findAllReverseOrder());
+		
+		//model.addAttribute("recipes", recipeService.findAllReverseOrder());
+		
 		
 		model.addAttribute("recipe", new Recipe());
 		

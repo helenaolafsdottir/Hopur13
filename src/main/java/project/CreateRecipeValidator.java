@@ -9,8 +9,10 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import project.persistence.entities.User;
-import project.service.UserService;
+import project.persistence.entities.Recipe;
+
+import project.service.RecipeService;
+
 
 @Component
 public class CreateRecipeValidator implements Validator{
@@ -19,43 +21,32 @@ public class CreateRecipeValidator implements Validator{
 	
 	@Override
 	public boolean supports(Class<?> aClass){
-		return User.class.equals(aClass);
+		return Recipe.class.equals(aClass);
 	}
 	
 	@Override
 	public void validate(Object o, Errors errors) {
-		User user = (User) o;
+		Recipe recipe = (Recipe) o;
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "NotEmpty");
-		if (user.getUserName().length() < 6 || user.getUserName().length() > 32 ) {
-			errors.rejectValue("userName", "Size.user.userName");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "recipeName", "NotEmpty");
+		if (recipe.getRecipeName().length() < 2) {
+			errors.rejectValue("recipeName", "Size.recipe.recipeName");
 		}
 		
-		if(!userService.findByName(user.getUserName()).isEmpty()){
-			errors.rejectValue("userName", "Duplicate.user.userName");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ingredients", "NotEmpty");
+		if (recipe.getIngredients().length() < 3) {
+			errors.rejectValue("ingredients", "Size.recipe.ingredients");
 		}
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-		if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-			errors.rejectValue("password", "Size.user.password");
-		}
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "instructions", "NotEmpty");
+		if (recipe.getInstructions().length() < 10) {
+			errors.rejectValue("instructions", "Size.recipe.instructions");
+		}	
 		
-		if(!user.getPasswordConfirm().equals(user.getPassword())) {
-			errors.rejectValue("passwordConfirm", "Diff.user.passwordConfirm");
-		}
-		
-		if(!isValidEmailAddress(user.getEmail())){
-			errors.rejectValue("email", "NotCorrectEmail.user.email");
-		}
-		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "image", "NotEmpty");
+		if (recipe.getImage().length() < 10) {
+			errors.rejectValue("image", "Size.recipe.image");
+		}	
 	}
-	
-	public boolean isValidEmailAddress(String emailAddress){ 
-        String expression="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"; 
-        CharSequence inputStr = emailAddress; 
-        Pattern pattern = Pattern.compile(expression,Pattern.CASE_INSENSITIVE); 
-        Matcher matcher = pattern.matcher(inputStr); 
-        return matcher.matches(); 
-    }  
 
 }
