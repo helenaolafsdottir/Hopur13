@@ -29,23 +29,24 @@
         		<%--If the model has an attribute with the name `postitNotes`--%>
         		<c:when test="${not empty recipes}">
             		<%--Create a table for the Postit Notes--%>
-          		 	<table class="recipelist">
+          		 	<section class="uppskriftir">
 
                 		<%--For each recipes, that is in the list that was passed in the model--%>
                 		<%--generate a row in the table--%>
                 		<%--Here we set `recipe` as a singular item out of the list `recipes`--%>
                 		<c:forEach var="recipe" items="${recipes}">
-                    		<tr>
-            	            	<%--We can reference attributes of the Entity by just entering the name we gave--%>
-        	                	<%--it in the singular item var, and then just a dot followed by the attribute name--%>
-	
-		                        <%--Create a link based on the name attribute value--%>
-		                        <td><a href="/recipes/${recipe.id}">${recipe.recipeName}</a></td>
-	            	            <%--The String in the instructions attribute--%>
-                   			    <td>${recipe.instructions}</td>
-                    		</tr>
-                		</c:forEach>
-            		</table>
+                    		<div class="einUppskrift">
+                    			<div class="uppskriftir_mynd">
+									<img src=${recipe.image} class="myndFyrirUppskrift">
+								</div>
+								<section class="uppskriftir_texti">
+									
+									<h3>${recipe.recipeName}</h3>
+									<a class="forsiduUppskriftirTakki" href="/recipes/${recipe.id}">Skoða Uppskrift</a>
+								</section>
+							</div>
+                   		</c:forEach>
+            		</section>
         		</c:when>
 
         		<%--If all tests are false, then do this--%>

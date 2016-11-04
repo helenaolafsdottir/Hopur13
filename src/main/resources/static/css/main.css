@@ -1,9 +1,11 @@
 
-body {
+html, body {
 	background: #F5F5F0;
 	margin: 0;
 	padding: 0;
+	height: 100%;
 }
+
 .nav {
 	height: 250px;
 	background: #898176;
@@ -14,6 +16,7 @@ body {
 	clear: both;
 	padding: 0% 7%;
 }
+/* ---------- Forsíða --------- */
 header ul {
 	padding: 0;
 	margin:0;
@@ -33,13 +36,14 @@ header h1 {
 
 main {
 	margin: 2% 8.5%;	
+	min-height: 55%; /* ath!!!!! */
 }
 
 .nav > li a{
 	display: inline-block;
 	white-space: nowrap;
 	padding: 15px 30px;
-	margin: 25px;
+	margin: 25px 15px;
 	background-color: #6E675E;
 	text-align: center;
 	text-decoration: none;
@@ -48,20 +52,21 @@ main {
 	left:0;
 	display: inline;
 	font-weight: bold;
+	font-family: 'bree serif', serif;
 }
 
 .loginbutton li a , .signupbutton li a {
 	display: inline-block;
 	white-space: nowrap;
-	padding: 15px 30px;
-	margin: 25px;
+	padding: 15px 17px;
+	margin: 25px 10px;
 	background-color: #6E675E;
 	text-align: center;
 	text-decoration: none;
 	float:right;
-	
+	font-family: 'bree serif', serif;
+	font-weight: bold;
 }
-
 
 .nav a:link, .nav a:visited, .nav a:active {
 	color: white;
@@ -74,6 +79,48 @@ main {
 	overflow: hidden;
 	background-color:#635C54;
  }
+ 
+ .nav .searchcond {
+	float: left;
+	margin: 25px 5px 25px 70px;
+ 	padding: 2px 2px;
+ 	font-family: 'bree serif', serif;
+ 	font-size: 90%;
+ 	height: 45px;
+ 	width: 8%;
+ 	background-color: #DBD9D5;
+ 	color: #6E675E;
+ }
+ 
+ .nav .searchtext {
+ 	float: left;
+ 	width: 25%;
+ 	height: 40px;
+ 	margin: 25px 5px;
+ 	font-family: 'bree serif', serif;
+	padding: 0px 10px;  	
+	font-size: 100%;
+ 	background-color: #DBD9D5;
+ 	color:#6E675E;
+ }
+ 
+ .nav .searchbutton {
+ 	float:left;
+ 	display: inline-block;
+	white-space: nowrap;
+	padding: 15px 25px;
+	margin: 25px 5px;
+	background-color: #6E675E;
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	color: white;
+	font-weight: bold;
+	font-family: 'bree serif', serif;
+	font-size: 100%;
+	height: 45px;
+ }
+ 
  
  .forsiduUppskriftir h2 {
  	color:#6E675E;
@@ -154,4 +201,106 @@ table.notes tr:nth-child(even) {
 
 table.notes tr:nth-child(odd) {
     background-color: azure;
+}
+
+/* ------------One Recipe------------ */ 
+.one_recipe {
+		height: 850px;
+		margin: 3em 0;
+}
+.uppskrift_mynd {
+	width: 40%;
+	float:left;
+}
+.uppskrift_texti {
+		padding-left:2px;
+		width: 50%;
+		float:right;
+	}
+
+/* ------------Recipes--------------- */
+
+.uppskriftir {
+	height: auto;
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+		
+}
+
+.einuppskrift {
+	display: inline-block;
+	padding: 40px;
+	margin: 5%;
+	
+
+}
+.uppskriftir_mynd {
+	
+	display: inline-block;
+}
+.uppskriftir_mynd img {
+	margin: 100px 0px 0px 0px;
+	width: 400px;
+	float: left;	
+}
+.uppskriftir_texti {
+	width: 100%;
+}
+
+/* ---------- Create Recipe --------- */
+
+.create_recipe_form {
+	height: 600px;
+	font-size: 120%;
+	margin: auto;
+	width: 50%;
+}
+.create_recipe_table {
+	margin:auto;
+	width: 70%;
+	margin-bottom: 5%;
+}
+.create_recipe_form h2 {
+	margin: auto;
+	width: 40%;
+	margin-bottom: 2%;
+}
+.create_recipe_form input, .create_recipe_form textarea {
+	width: 300px;
+	border: none;
+	padding: 2%;
+}
+.create_recipe_form select {
+	width: 314px;
+	border: none;
+	padding: 2%;
+}
+.instruction_text {
+	vertical-align: top;
+}
+.instructions {
+	height: 300px;
+	padding-top: 0;
+	wrap: hard;
+	max-width: 
+}
+.instructions label {
+	padding-top: 0;
+}
+.create_recipe_takki {
+	padding: 0.4em;
+	background-color: #898176;
+	border: none;	
+	font-size: 120%;
+	font-weight: bold;
+	color:white;
+	text-align: center;
+	border-bottom: none;
+	text-decoration: none;
+
+}
+
+.create_recipe_takki_div {
+	margin: auto;
+	width: 50%;
 }

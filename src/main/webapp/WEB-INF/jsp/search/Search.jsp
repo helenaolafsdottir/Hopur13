@@ -6,49 +6,66 @@
 
 <html lang="en">
 
-    <head>
-        <title>Search</title>
-
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>"/>
+   <head>
+        <title>Uppskriftabankinn</title>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>"/>  
     </head>
     <body>
-		<h1>Search</h1>
+		<header>
+    		<ul class="nav">
+    		    <h1>Uppskriftabankinn</h1>
+    			<li><a href="/">Home</a></li>
+    			<li><a href="/recipes">Recipes</a></li>
+    			<li><a href="/userbla">My Page</a></li>
+    			
+    			<sf:form method="POST" commandName="recipe" action="/search">	
+    				<select class="searchcond" name="searchcond">
+  						<option value="username">UserName</option>
+  						<option value="recipe_name">RecipeName</option>
+   						<option value="ingredients">Ingredients</option>
+  					</select>
+    			    <input class="searchtext" name="search" type="text" placeholder="Leita"/>
+        			<input class="searchbutton" type="submit" VALUE="Leita"/>
+    			</sf:form>
+    			
+    			<div class="signupbutton"><li><a href="userbla">Signup</a></li></div>
+    			<div class="loginbutton"><li><a href="#">Login</a></li></div>
+    		</ul>
+    	</header>
 
-    <%--Note that the `commandName` given here HAS TO MATCH the name of the attribute--%>
-    <%--that is added to the model that is passed to the view.--%>
-    <%--See PostitNoteController, method postitNoteViewGet(), and find where this attribute is added to the model.--%>
-
-	<c:choose>
-        <%--If the model has an attribute with the name `postitNotes`--%>
-        <c:when test="${not empty recipes}">
-            <%--Create a table for the Postit Notes--%>
-            <table class="recipelist">
-
-                <%--For each recipe, that is in the list that was passed in the model--%>
-                <%--generate a row in the table--%>
-                <%--Here we set `recipe` as a singular item out of the list `postitNotes`--%>
-                <c:forEach var="recipe" items="${recipes}">
-                    <tr>
-                        <%--We can reference attributes of the Entity by just entering the name we gave--%>
-                        <%--it in the singular item var, and then just a dot followed by the attribute name--%>
-
-						<%--Create a link based on the name attribute value--%>
-                        <td><a href="/recipes/${recipe.id}">${recipe.recipeName}</a></td>
-                     
-                    
-                       <%--The String in the note attribute--%>
-                        <td>${recipe.username}</td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </c:when>
-
-        <%--If all tests are false, then do this--%>
-        <c:otherwise>
-            <h3>No recipes!</h3>
-        </c:otherwise>
-    </c:choose>
-
+		<main>
+		    <%--Note that the `commandName` given here HAS TO MATCH the name of the attribute--%>
+		    <%--that is added to the model that is passed to the view.--%>
+		    <%--See PostitNoteController, method postitNoteViewGet(), and find where this attribute is added to the model.--%>
+		
+			<c:choose>
+		        <%--If the model has an attribute with the name `postitNotes`--%>
+		        <c:when test="${not empty recipes}">
+		            <%--Create a table for the Postit Notes--%>
+		            <div class="uppskriftir">
+		
+		                <%--For each recipe, that is in the list that was passed in the model--%>
+		                <%--generate a row in the table--%>
+		                <%--Here we set `recipe` as a singular item out of the list `postitNotes`--%>
+		                <c:forEach var="recipe" items="${recipes}">
+							<div class="uppskriftir_mynd">
+									<img src=${recipe.image} class="myndFyrirUppskrift">
+							</div>
+							<section class="uppskriftir_texti">
+									
+									<h3>${recipe.recipeName}</h3>
+									<a class="forsiduUppskriftirTakki" href="/recipes/${recipe.id}">Skoða Uppskrift</a>
+							</section>
+							<p>${recipe.recipeName}</p>
+		                </c:forEach>
+		            </div>
+		        </c:when>
+		        <c:otherwise>
+		            <h3>No recipes!</h3>
+		        </c:otherwise>
+		    </c:choose>
+		</main>
+		<footer>Class HBV501G, University of Iceland, Fall 2015</footer>
     </body>
 </html>
 

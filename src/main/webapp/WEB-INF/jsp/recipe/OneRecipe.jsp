@@ -25,27 +25,22 @@
 
 		<h1>${recipes.recipeName}</h1>
 		
-	    <table class="oneRecipe">
-	    	<tr>
-	    		<td>Ingredients:</td>
-	        	<td>${recipes.ingredients}</td>
-	        </tr>
-	        <tr>
-	        	<td>Instructions:</td>
-	   	     	<td>${recipes.instructions}</td>
-	        </tr>
-	        <tr>
-	        	<td>Recipe Group:</td>
-	   	     	<td>${recipes.recipeGroup}</td>
-	        </tr>
-	        <tr>
-	        	<td>User:</td>
-	   	     	<td>${recipes.username}</td>
-	        </tr> 
-	        <tr>
-	        	<td><img src="${recipes.image}"/></td>
-	        </tr> 
-	     </table>
+	    <div class="one_recipe">
+	    	<td><img class="uppskrift_mynd" src="${recipes.image}"/></td>
+	    	<div class="uppskrift_texti">
+	    		<p><strong>Ingredients:</strong></p>
+	       		<p>${recipes.ingredients}</p>
+
+        		<p><strong>Instructions:</strong></p>
+   	    	 	<p>${recipes.instructions}</p>
+
+        		<p><strong>Recipe Group: </strong>${recipes.recipeGroup}</p>
+
+        		<p><strong>User: </strong>${recipes.username}</p>
+	        </div> 
+
+	        	
+	     </div>
 	</main>
 </body>
 <footer>Class HBV501G, University of Iceland, Fall 2015</footer>

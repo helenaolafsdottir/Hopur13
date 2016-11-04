@@ -22,8 +22,10 @@
     	</ul>
     </header>
 	<main>
+	<section class="create_recipe_form">
+		<h2>Create Your Recipe</h2>
 		<sf:form method="POST" commandName="recipe" action="/createRecipe">
-			<table>
+			<table class="create_recipe_table">
 				<tr>
 					<td>Recipe Name:</td>
 					<td><sf:input path="recipeName" type="text" placeholder="Recipe Name here"/></td>
@@ -39,23 +41,24 @@
 				</tr>
 				<tr>
 					<td>Ingredients:</td>
-					<td><sf:input path="ingredients" type="text" placeholder="Ingredients here"/></td>
+					<td><sf:input path="ingredients" type="text" placeholder="List the ingredients here"/></td>
 				</tr>
 				<tr>
-					<td>Instructions:</td>
-					<td><sf:input path="instructions" type="textarea" placeholder="Instructions here"/></td>
+					<td class="instruction_text">Instructions:</td>
+					<td><sf:textarea class="instructions" path="instructions" type="text" placeholder="Instructions here"/></td>
 				</tr>
 				<tr>
 					<td>Image:</td>
 					<td><sf:input path="image" type="textarea" placeholder="Image url here"/></td>
 				</tr>
 				<tr>
-					<td>username:</td>
+					<td>Username:</td>
 					<td><sf:input path="username" type="textarea" placeholder="username here"/></td>
 				</tr>
 			</table>
-			<input type="submit" VALUE="Save Recipe!"/>
+			<div class="create_recipe_takki_div"><input class="create_recipe_takki" type="submit" VALUE="Save Recipe!"/></div>
 		</sf:form>
+		</section>
 	</main>	
 </body>
 <footer>Class HBV501G, University of Iceland, Fall 2015</footer>
