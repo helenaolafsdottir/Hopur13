@@ -1,0 +1,17 @@
+
+table.users {
+    border: 1px black solid;
+}
+
+.users td {
+    padding: 15px;
+    text-align: left;
+}
+
+table.users tr:nth-child(even) {
+    background-color: antiquewhite;
+}
+
+table.users tr:nth-child(odd) {
+    background-color: azure;
+}

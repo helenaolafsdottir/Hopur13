@@ -16,6 +16,7 @@ public class User {
 	private String name;
 	private String email;
 	private Date createDate;
+	private String passwordConfirm;
 	
 //	public User(String userName, String password, String name, String email){
 //		this.userName = userName;
@@ -74,6 +75,14 @@ public class User {
 	
 	public void setCreateDate(Date createDate){
 		this.createDate = createDate;
+	}
+	
+	public void setPasswordConfirm(String passwordConfirm){
+		this.passwordConfirm = passwordConfirm;
+	}
+
+	public String getPasswordConfirm() {
+		return this.passwordConfirm;
 	}
 	
 }
