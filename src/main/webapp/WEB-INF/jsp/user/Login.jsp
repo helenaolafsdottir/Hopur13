@@ -16,7 +16,7 @@
    		    <h1>Uppskriftabankinn</h1>
    			<li><a href="/">Home</a></li>
    			<li><a href="/recipes">Recipes</a></li>
-   			<li><a href="/userbla">My Page</a></li>
+   			<li><a href="/myPage">My Page</a></li>
    			
    			<sf:form method="POST" commandName="recipe" action="/search">	
    				<select class="searchcond" name="searchcond">

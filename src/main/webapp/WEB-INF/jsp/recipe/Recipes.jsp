@@ -16,7 +16,18 @@
 	    	    <h1>Uppskriftabankinn</h1>
 	    		<li><a href="/">Home</a></li>
 	    		<li><a href="#">Recipes</a></li>
-	    		<li><a href="/userbla">My Page</a></li>
+	    		<li><a href="/myPage">My Page</a></li>
+	    		
+	    		<sf:form method="POST" commandName="recipe" action="/search">	
+    				<select class="searchcond" name="searchcond">
+  						<option value="username">UserName</option>
+  						<option value="recipe_name">RecipeName</option>
+   						<option value="ingredients">Ingredients</option>
+  					</select>
+    			    <input class="searchtext" name="search" type="text" placeholder="Leita"/>
+        			<input class="searchbutton" type="submit" VALUE="Leita"/>
+    			</sf:form>
+	    		
 	    		<div class="signupbutton"><li><a href="/userbla">Signup</a></li></div>
     			<div class="loginbutton"><li><a href="/login">Login</a></li></div>
 	    	</ul>

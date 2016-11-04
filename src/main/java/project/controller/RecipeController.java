@@ -84,4 +84,14 @@ public class RecipeController {
 		
 		return "recipe/CreateRecipe";
 	}
+	
+	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
+	public String myPageViewGet(Model model){
+		//model.addAttribute("recipe", new Recipe());
+		
+		//model.addAttribute("recipes", recipeService.findAllReverseOrder());
+		
+		return "user/MyPage";
+	}
+	
 }
