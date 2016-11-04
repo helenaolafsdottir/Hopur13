@@ -5,8 +5,6 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
 <html lang="en">
-
-<<<<<<< HEAD
     <head>
         <title>Uppskriftabankinn</title>
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>"/>  
@@ -75,7 +73,6 @@
 	</body>
 	<footer>Class HBV501G, University of Iceland, Fall 2015</footer>
 </html>
-=======
 <head>
     <title>Users</title>
     
@@ -121,8 +118,5 @@
 		
 		<input type="submit" VALUE="Skra mig!"/>
 	</sf:form>
-
 </body>
-
->>>>>>> origin/master
 </html>
