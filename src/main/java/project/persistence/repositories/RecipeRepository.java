@@ -32,4 +32,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     
     //@Query(value = "SELECT p FROM PostitNote p where length(p.name) >= 3 ")
     //List<PostitNote> findAllWithNameLongerThan3Chars();
+
 }

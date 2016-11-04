@@ -70,7 +70,7 @@ public class RecipeController {
 	public String createRecipeViewGet(Model model){
 		model.addAttribute("recipe", new Recipe());
 		
-		//model.addAttribute("recipes", recipeService.findAllReverseOrder());
+		model.addAttribute("recipes", recipeService.findAllReverseOrder());
 		
 		return "recipe/CreateRecipe";
 	}
@@ -85,22 +85,18 @@ public class RecipeController {
 		}
 		recipeService.save(formRecipe);
 		
-		
+		String name = formRecipe.recipeName;
+		System.out.println(name);
+		Recipe recipe = recipeService.findByRecipeName(name);
+		Long recipeId = recipe.id;
+				
 		//model.addAttribute("recipes", recipeService.findAllReverseOrder());
-		
-		
-		model.addAttribute("recipe", new Recipe());
-		
-		return "recipe/CreateRecipe";
-	}
-	
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public String myPageViewGet(Model model){
 		//model.addAttribute("recipe", new Recipe());
 		
-		//model.addAttribute("recipes", recipeService.findAllReverseOrder());
-		
-		return "user/MyPage";
+		return "redirect:/recipes/" + recipeId;
+		//return "recipe/CreateRecipe";
 	}
+	
+	
 	
 }
