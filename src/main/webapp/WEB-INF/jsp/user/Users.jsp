@@ -83,6 +83,7 @@
 </head>
 <body>
 
+
 	<h1><a href="/user">Users</a></h1>
 	<sf:form method="POST" modelAttribute="user" action="/userbla">
 		<input type="hidden"
@@ -120,6 +121,7 @@
 		
 		<input type="submit" VALUE="Skra mig!"/>
 	</sf:form>
+
 </body>
 
 >>>>>>> origin/master

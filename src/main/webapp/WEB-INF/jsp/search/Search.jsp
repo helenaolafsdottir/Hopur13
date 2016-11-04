@@ -19,6 +19,7 @@
     			<li><a href="/userbla">My Page</a></li>
     			
     			<sf:form method="POST" commandName="recipe" action="/search">	
+    				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     				<select class="searchcond" name="searchcond">
   						<option value="username">UserName</option>
   						<option value="recipe_name">RecipeName</option>
@@ -54,7 +55,7 @@
 							<section class="uppskriftir_texti">
 									
 									<h3>${recipe.recipeName}</h3>
-									<a class="forsiduUppskriftirTakki" href="/recipes/${recipe.id}">Skoða Uppskrift</a>
+									<a class="forsiduUppskriftirTakki" href="/recipes/${recipe.id}">Skoï¿½a Uppskrift</a>
 							</section>
 							<p>${recipe.recipeName}</p>
 		                </c:forEach>

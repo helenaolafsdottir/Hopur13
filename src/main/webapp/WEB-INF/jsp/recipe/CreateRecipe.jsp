@@ -25,6 +25,7 @@
 	<section class="create_recipe_form">
 		<h2>Create Your Recipe</h2>
 		<sf:form method="POST" commandName="recipe" action="/createRecipe">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<table class="create_recipe_table">
 				<tr>
 					<td>Recipe Name:</td>
