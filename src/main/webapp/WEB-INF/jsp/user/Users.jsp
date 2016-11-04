@@ -19,6 +19,7 @@
     			<li><a href="/myPage">My Page</a></li>
     			
     			<sf:form method="POST" commandName="recipe" action="/search">	
+    			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     				<select class="searchcond" name="searchcond">
   						<option value="username">UserName</option>
   						<option value="recipe_name">RecipeName</option>
