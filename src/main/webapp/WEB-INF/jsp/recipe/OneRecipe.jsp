@@ -30,7 +30,8 @@
     		</sf:form>
 	    	
 	    	<div class="signupbutton"><li><a href="../userbla">Signup</a></li></div>
-    		<div class="loginbutton"><li><a href="../login">Login</a></li></div>s
+    		<div class="loginbutton"><li><a href="../login">Login</a></li></div>
+    		<div><li><a href="/login">Logout</a></li></div>
 	    </ul>
 	</header>
 	<main>
