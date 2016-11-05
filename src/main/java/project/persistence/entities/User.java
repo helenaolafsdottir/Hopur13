@@ -17,7 +17,7 @@ public class User {
 	private String email;
 	private Date createDate;
 	private String passwordConfirm;
-	@Column(columnDefinition="default 1")
+	@Column(columnDefinition=" Bigint default '1'")
 	private int enabled;
 	
 //	public User(String userName, String password, String name, String email){
