@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
-
 <html lang="en">
 
     <head>
@@ -33,6 +32,7 @@
     			
     			<div class="signupbutton"><li><a href="/userbla">Signup</a></li></div>
     			<div class="loginbutton"><li><a href="/login">Login</a></li></div>
+    			<div><li><a href="/login">Logout</a></li></div>
     		</ul>
     	</header>
     	<main>

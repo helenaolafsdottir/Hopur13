@@ -20,7 +20,6 @@
 	    	<li><a href="/myPage">My Page</a></li>
 	    	
 	    	<sf:form method="POST" commandName="recipe" action="/search">	
-	    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     			<select class="searchcond" name="searchcond">
   					<option value="username">UserName</option>
   					<option value="recipe_name">RecipeName</option>
@@ -31,7 +30,8 @@
     		</sf:form>
 	    	
 	    	<div class="signupbutton"><li><a href="../userbla">Signup</a></li></div>
-    		<div class="loginbutton"><li><a href="../login">Login</a></li></div>s
+    		<div class="loginbutton"><li><a href="../login">Login</a></li></div>
+    		<div><li><a href="/login">Logout</a></li></div>
 	    </ul>
 	</header>
 	<main>
