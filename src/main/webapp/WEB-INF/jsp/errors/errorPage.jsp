@@ -36,7 +36,9 @@
     		</ul>
     	</header>
     	<main>
-		    <h1>Hello <b><c:out value="${pageContext.request.remoteUser}"></c:out></b></h1>
+		   <h1>
+		   		<c:out value="${errorMsg}"></c:out>
+		   </h1>
     	</main>
     </body>
     <footer>Class HBV501G, University of Iceland, Fall 2015</footer>

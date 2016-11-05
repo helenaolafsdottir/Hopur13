@@ -25,7 +25,7 @@ public class UserValidator implements Validator{
 	@Override
 	public void validate(Object o, Errors errors) {
 		User user = (User) o;
-		
+		//if(user != null) return;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "NotEmpty");
 		if (user.getUserName().length() < 6 || user.getUserName().length() > 32 ) {
 			errors.rejectValue("userName", "Size.user.userName");

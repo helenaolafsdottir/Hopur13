@@ -17,6 +17,8 @@ public class User {
 	private String email;
 	private Date createDate;
 	private String passwordConfirm;
+	@Column(columnDefinition="default 1")
+	private int enabled;
 	
 //	public User(String userName, String password, String name, String email){
 //		this.userName = userName;
@@ -26,6 +28,18 @@ public class User {
 //	}
 	
 	public User(){
+		
+	}
+	
+	public User(User cloneUser){
+		this.id = cloneUser.getId();
+		this.userName = cloneUser.getUserName();
+		this.password = cloneUser.getPassword();
+		this.name = cloneUser.getName();
+		this.email = cloneUser.getEmail();
+		this.createDate = cloneUser.getCreateDate();
+		this.passwordConfirm = cloneUser.getPasswordConfirm();
+		this.enabled = cloneUser.getEnabled();
 		
 	}
 	
@@ -83,6 +97,14 @@ public class User {
 
 	public String getPasswordConfirm() {
 		return this.passwordConfirm;
+	}
+	
+	public int getEnabled(){
+		return this.enabled;
+	}
+	
+	public void setEnabled(int enabled){
+		this.enabled = enabled;
 	}
 	
 }

@@ -6,31 +6,38 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	@Autowired
+	private UserDetailsService userDetailsService;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/*") //temporarily open for all sites
-				.permitAll()
+				.antMatchers("/myPage").access("hasRole('ROLE_USER')") //temporarily open for all sites
+				.anyRequest().permitAll()
 				.and()
 			.formLogin()
-				.loginPage("/login")
+				.loginPage("/login").usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/myPage")
 				.permitAll()
 				.and()
-			.logout()
-				.permitAll();
+			.logout().logoutSuccessUrl("/login?logout")
+				.permitAll()
+			.and()
+				.csrf();
 	}
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.inMemoryAuthentication()
-				.withUser("user").password("password").roles("USER");
-		//auth.jdbcAuthentication().
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 	}
+	
 	
 }

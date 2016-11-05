@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import project.UserValidator;
 import project.persistence.entities.User;
+import project.persistence.entities.UserRole;
 import project.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -40,6 +41,7 @@ public class UserController {
 	public String userViewPost(@ModelAttribute("user") User formUser, BindingResult bindingResult, Model model){
 		Date createDate = new Date();
 		formUser.setCreateDate(createDate);
+		formUser.setEnabled(1);
 		userValidator.validate(formUser, bindingResult);
 		if(bindingResult.hasErrors()){
 			return "user/Users";
@@ -48,11 +50,15 @@ public class UserController {
 		String encodedPassword = passwordEncoder.encode(unencodedPassword);
 		formUser.setPassword(encodedPassword);
 		
-		userService.save(formUser);
+		User savedUser = userService.save(formUser);
+		Long savedId = savedUser.getId();
+		String role = "ROLE_USER";
+		UserRole userRole = new UserRole(savedId, role);
+		UserRole savedUserRole = userService.save(userRole);
 		
 		model.addAttribute("user", new User());
 		
-		return "user/Users";
+		return "redirect:/login";
 	}
 	
 //	@RequestMapping(value = "/login", method = RequestMethod.GET)

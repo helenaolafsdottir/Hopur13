@@ -7,17 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.persistence.entities.User;
+import project.persistence.entities.UserRole;
 import project.persistence.repositories.UserRepository;
+import project.persistence.repositories.UserRolesRepository;
 import project.service.UserService;
 
 @Service
 public class UserServiceImplementation implements UserService{
 	
 	UserRepository repository;
+	UserRolesRepository userRolesRepository;
 	
 	@Autowired
-	public UserServiceImplementation(UserRepository repository){
+	public UserServiceImplementation(UserRepository repository, UserRolesRepository userRolesRepository){
 		this.repository = repository;
+		this.userRolesRepository = userRolesRepository;
 	}
 	
 	@Override
@@ -52,5 +56,10 @@ public class UserServiceImplementation implements UserService{
 	@Override
 	public List<User> findByName(String name){
 		return repository.findByName(name);
+	}
+	
+	@Override
+	public UserRole save(UserRole userRole){
+		return userRolesRepository.save(userRole);
 	}
 }

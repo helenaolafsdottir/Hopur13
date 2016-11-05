@@ -3,6 +3,7 @@ package project.service;
 import java.util.List;
 
 import project.persistence.entities.User;
+import project.persistence.entities.UserRole;
 
 public interface UserService {
 	/**
@@ -21,5 +22,7 @@ public interface UserService {
 	User findOne(Long id);
 	
 	List<User> findByName(String name);
+	
+	UserRole save(UserRole userRole);
 	
 }
