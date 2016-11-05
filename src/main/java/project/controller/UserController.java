@@ -49,7 +49,7 @@ public class UserController {
 	    String name = auth.getName(); //get logged in username
 	    
 	    System.out.println(name);
-		
+	    
 		return "user/MyPage";
 	}
 	
