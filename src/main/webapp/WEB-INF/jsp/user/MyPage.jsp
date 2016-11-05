@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
-
 <html lang="en">
 
     <head>
@@ -36,7 +35,7 @@
     		</ul>
     	</header>
     	<main>
-		    
+
     	</main>
     </body>
     <footer>Class HBV501G, University of Iceland, Fall 2015</footer>
