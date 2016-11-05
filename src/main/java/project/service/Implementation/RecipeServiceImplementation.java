@@ -51,12 +51,6 @@ public class RecipeServiceImplementation implements RecipeService{
 	    public Recipe findOne(Long id) {
 	        return repository.findOne(id);
 	    }
-	    /*
-	    @Override
-	    public List<Recipe> findBySearchconditionAndSearchtype(String searchCondition, String searchType) {
-	        return repository.findBySearchconditionAndSearchtype(searchCondition, searchType);
-	    }
-	    */
 		
 	    public Recipe findByRecipeName(String recipeName) {
 			return repository.findByRecipeName(recipeName);
@@ -65,17 +59,8 @@ public class RecipeServiceImplementation implements RecipeService{
 			return repository.findById(id);
 		}
 
-
-	//	@Override
-		//public List<Recipe> findFirstThreeRecipes() {
-		//	return repository.findFirstThreeRecipes();
-		//}
-
-/*
 		@Override
-		public Recipe insertFirstRecipe() {
-			
-			return repository.insertFirstRecipe();
+		public List<Recipe> findByUsername(String search) {
+			return repository.findByUsername(search);
 		}
-*/
 }

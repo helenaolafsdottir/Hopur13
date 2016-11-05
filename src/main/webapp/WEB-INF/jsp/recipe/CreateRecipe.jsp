@@ -66,10 +66,6 @@
 					<td>Image:</td>
 					<td><sf:input path="image" type="textarea" placeholder="Image url here"/></td>
 				</tr>
-				<tr>
-					<td>Username:</td>
-					<td><sf:input path="username" type="textarea" placeholder="username here"/></td>
-				</tr>
 			</table>
 			<div class="create_recipe_takki_div"><input class="create_recipe_takki" type="submit" VALUE="Save Recipe!"/></div>
 		</sf:form>

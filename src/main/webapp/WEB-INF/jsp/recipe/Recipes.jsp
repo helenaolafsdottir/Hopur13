@@ -56,7 +56,7 @@
 								<section class="uppskriftir_texti">
 									
 									<h3>${recipe.recipeName}</h3>
-									<a class="forsiduUppskriftirTakki" href="/recipes/${recipe.id}">Sko�a Uppskrift</a>
+									<a class="forsiduUppskriftirTakki" href="/recipes/${recipe.id}">View Recipe</a>
 								</section>
 							</div>
                    		</c:forEach>

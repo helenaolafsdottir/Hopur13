@@ -23,7 +23,7 @@ public interface RecipeService {
 	Recipe findById(Long id);
 	
 	Recipe findOne(Long id);
-	
+	List<Recipe> findByUsername(String search);
 	
 	//List<Recipe> findFirstThreeRecipes();
 	//Recipe insertFirstRecipe();

@@ -37,6 +37,30 @@
     	</header>
     	<main>
 		    <h1>Hello <b><c:out value="${pageContext.request.remoteUser}"></c:out></b></h1>
+		    <a href="/createRecipe">Create Recipe</a>
+		    <h3>Your Recipes:</h3>
+		    <c:choose>
+		    	<c:when test="${not empty recipes}">
+          		 	<section class="uppskriftir">
+                		<c:forEach var="recipe" items="${recipes}">
+                    		<div class="einUppskrift">
+                    			<div class="uppskriftir_mynd">
+									<img src=${recipe.image} class="myndFyrirUppskrift">
+								</div>
+								<section class="uppskriftir_texti">
+									<h3>${recipe.recipeName}</h3>
+									<a class="forsiduUppskriftirTakki" href="/recipes/${recipe.id}">View Recipe</a>
+								</section>
+							</div>
+                   		</c:forEach>
+            		</section>
+        		</c:when>
+
+        		<%--If all tests are false, then do this--%>
+        		<c:otherwise>
+        		    <p>You haven't posted any recipes yet, click on the Create Recipe button to post one right now!</p>
+        		</c:otherwise>
+   			 </c:choose>
     	</main>
     </body>
     <footer>Class HBV501G, University of Iceland, Fall 2015</footer>

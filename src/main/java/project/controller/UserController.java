@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import antlr.collections.List;
 import project.UserValidator;
+import project.persistence.entities.Recipe;
 import project.persistence.entities.User;
 import project.persistence.entities.UserRole;
+import project.service.RecipeService;
 import project.service.UserService;
 
 import org.springframework.security.core.Authentication;
@@ -24,14 +27,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class UserController {
 
 	UserService userService;
+	RecipeService recipeService;
 	BCryptPasswordEncoder passwordEncoder;
 	UserValidator userValidator;
 	
 	@Autowired
-	public UserController(UserService userService, BCryptPasswordEncoder passwordEncoder, UserValidator userValidator){
+	public UserController(UserService userService, BCryptPasswordEncoder passwordEncoder, UserValidator userValidator, RecipeService recipeService){
 		this.userService = userService;
 		this.passwordEncoder = passwordEncoder;
 		this.userValidator = userValidator;
+		this.recipeService = recipeService;
 	}
 	
 	@RequestMapping(value = "/userbla", method = RequestMethod.GET)
@@ -42,28 +47,16 @@ public class UserController {
 	}
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
 	public String myPageViewGet(Model model){
-		//model.addAttribute("recipe", new Recipe());
-		
-		//model.addAttribute("recipes", recipeService.findAllReverseOrder());
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String name = auth.getName(); //get logged in username
-	    
-	    System.out.println(name);
-	    
+	    String search = auth.getName(); //get logged in username
+		System.out.println(search);
+		System.out.println(recipeService.findByUsername(search));
+		
+		model.addAttribute("recipes", recipeService.findByUsername(search));
+
 		return "user/MyPage";
 	}
-	
-	@RequestMapping(value = "/myPage/{id}", method = RequestMethod.GET)
-    public String myPageWithIdViewGet(@PathVariable Long id,
-                                             Model model){
-
-        // Get all recipes with this name and add them to the model
-        model.addAttribute("user", userService.findOne(id));
-
-        // Return the view
-        return "recipe/OneRecipe"; //skjalið OneRecipe í möppunni recipe
-    }
 	
 	@RequestMapping(value = "/userbla", method = RequestMethod.POST) 
 	public String userViewPost(@ModelAttribute("user") User formUser, BindingResult bindingResult, Model model){

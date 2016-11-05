@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
@@ -23,7 +25,6 @@ import project.service.StringManipulationService;
 
 @Controller
 public class RecipeController {
-
 	
 	RecipeService recipeService;
 	CreateRecipeValidator recipeValidator;
@@ -37,7 +38,6 @@ public class RecipeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String indexViewGet(Model model){
 		
-	//	model.addAttribute("recipes", recipeService.findFirstThreeRecipes());
 		model.addAttribute("recipe1", recipeService.findById(1L));
 		model.addAttribute("recipe2", recipeService.findById(2L));
 		model.addAttribute("recipe3", recipeService.findById(3L));
@@ -83,6 +83,9 @@ public class RecipeController {
 		if(bindingResult.hasErrors()){
 			return "recipe/CreateRecipe";
 		}
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String username = auth.getName(); //get logged in username
+		formRecipe.username = username;
 		recipeService.save(formRecipe);
 		
 		String name = formRecipe.recipeName;
