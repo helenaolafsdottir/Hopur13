@@ -2,6 +2,8 @@ package project.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +40,11 @@ public class SearchController {
 	public String searchViewPost(@RequestParam("searchcond") String searchcond,@RequestParam("search") String search, Model model){
     	
 		//model.addAttribute("recipe", new Recipe());
-		
+    	
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+    	
 		model.addAttribute("recipes", searchService.findAllWithCond(searchcond, search));
 		
 		return "search/Search";

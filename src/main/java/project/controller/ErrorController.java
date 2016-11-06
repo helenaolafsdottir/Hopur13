@@ -3,6 +3,8 @@ package project.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,11 @@ public class ErrorController {
 		final int error_code = getHttpStatusCode(request);
 		
 		final String error_message=errorService.generateErrorMessage(error_code);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+		
 		
 		model.addAttribute("errorMsg", error_message);
 		return "errors/errorPage";

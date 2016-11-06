@@ -50,6 +50,10 @@ public class RecipeController {
 	public String recipeViewGet(Model model){
 		
 		model.addAttribute("recipes", recipeService.findAllReverseOrder());
+	
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
 		
 		return "recipe/Recipes";
 	}
@@ -60,6 +64,10 @@ public class RecipeController {
         // Get all recipes with this name and add them to the model
         model.addAttribute("recipes", recipeService.findById(id));
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+        
         // Return the view
         return "recipe/OneRecipe"; //skjalið OneRecipe í möppunni recipe
     }
@@ -69,6 +77,10 @@ public class RecipeController {
 		model.addAttribute("recipe", new Recipe());
 		
 		model.addAttribute("recipes", recipeService.findAllReverseOrder());
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
 		
 		return "recipe/CreateRecipe";
 	}
@@ -90,6 +102,10 @@ public class RecipeController {
 		System.out.println(name);
 		Recipe recipe = recipeService.findByRecipeName(name);
 		Long recipeId = recipe.id;
+		
+		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
 				
 		//model.addAttribute("recipes", recipeService.findAllReverseOrder());
 		//model.addAttribute("recipe", new Recipe());

@@ -43,6 +43,10 @@ public class UserController {
 	public String userViewGet(Model model){
 		model.addAttribute("user", new User());
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+		
 		return "user/Users";
 	}
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
@@ -77,20 +81,22 @@ public class UserController {
 		UserRole userRole = new UserRole(savedId, role);
 		UserRole savedUserRole = userService.save(userRole);
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+		
 		model.addAttribute("user", new User());
 		
 		return "redirect:/login";
 	}
 	
-//	@RequestMapping(value = "/login", method = RequestMethod.GET)
-//		public String login(Model model, String error, String logout) {
-//			if(error != null){
-//				model.addAttribute("error", "Your username and password is invalid.");
-//			}
-//			if(logout != null){
-//				model.addAttribute("message", "You have been logged out successfully");
-//				return "login";
-//		}
-//			return logout;
-//	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Model model, String error, String logout) {
+			
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+		
+		return "user/Login";
+	}
 }

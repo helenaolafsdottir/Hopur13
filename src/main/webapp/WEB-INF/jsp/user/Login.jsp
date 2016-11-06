@@ -31,10 +31,18 @@
    			</sf:form>
    			
    			<div class="signupbutton"><li><a href="/userbla">Signup</a></li></div>
-   			<div class="loginbutton"><li><a href="/login">Login</a></li></div>
-   			<form action="/logout" method="post"><input type="submit" value="Log out"/>
-    			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    		</form>
+   			<c:choose>
+		   		<c:when test="${loggedInUser eq 'anonymousUser'}">
+    				<div class="loginbutton"><li><a href="/login">Login</a></li></div>
+    			</c:when>
+    		
+    			<c:otherwise>
+    				<form action="/logout" method="post"><input type="submit" value="Log out"/>
+    					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    				</form>
+    			</c:otherwise>
+    		</c:choose>
+ 
    		</ul>
    	</header>
 	<main>
