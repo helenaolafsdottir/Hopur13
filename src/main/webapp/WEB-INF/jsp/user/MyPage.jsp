@@ -41,19 +41,14 @@
 		    <h3>Your Recipes:</h3>
 		    <c:choose>
 		    	<c:when test="${not empty recipes}">
-          		 	<section class="uppskriftir">
-                		<c:forEach var="recipe" items="${recipes}">
-                    		<div class="einUppskrift">
-                    			<div class="uppskriftir_mynd">
-									<img src=${recipe.image} class="myndFyrirUppskrift">
-								</div>
-								<section class="uppskriftir_texti">
-									<h3>${recipe.recipeName}</h3>
-									<a class="forsiduUppskriftirTakki" href="/recipes/${recipe.id}">View Recipe</a>
-								</section>
-							</div>
-                   		</c:forEach>
-            		</section>
+               		<c:forEach var="recipe" items="${recipes}">
+               		
+               		
+							<section class="uppskriftir_texti">
+								<a href="/recipes/${recipe.id}">${recipe.recipeName}</a>
+							</section>
+					
+                  	</c:forEach>
         		</c:when>
 
         		<%--If all tests are false, then do this--%>

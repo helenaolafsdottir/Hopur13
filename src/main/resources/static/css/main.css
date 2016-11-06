@@ -36,7 +36,7 @@ header h1 {
 
 main {
 	margin: 2% 8.5%;	
-	min-height: 55%; /* ath!!!!! */
+	min-height: 100%; /* ath!!!!! */
 }
 
 .nav > li a{
