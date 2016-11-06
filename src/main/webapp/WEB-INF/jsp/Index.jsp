@@ -34,12 +34,14 @@
     			
     			<div class="signupbutton"><li><a href="/userbla">Signup</a></li></div>
     			<div class="loginbutton"><li><a href="/login">Login</a></li></div>
-    			<div><li><a href="/login">Logout</a></li></div>
+    			<form action="/logout" method="post"><input type="submit" value="Log out"/>
+    				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    			</form>
     		</ul>
     	</header>
     	<main>
 		    <section class="forsiduUppskriftir">
-		    	<h2>Vinsælar Kökuuppskriftir</h2>
+		    	<h2>Vinsï¿½lar Kï¿½kuuppskriftir</h2>
 		    	<section class="forsiduUppskrift1">
 		    		<a href="/recipes/${recipe1.id}"><img src="${recipe1.image}"/></a>
 		    		<h3>${recipe1.recipeName}</h3>
@@ -55,7 +57,7 @@
 		    		<h3>${recipe3.recipeName}</h3>
 		    		<a href="/recipes/${recipe3.id}" class="forsiduUppskriftirTakki">View Recipe</a>
 		    	</section>
-		    	<h2>Vinsælir Réttir</h2>
+		    	<h2>Vinsï¿½lir Rï¿½ttir</h2>
 		    	<section class="forsiduUppskrift4">
 		    		<a href="/recipes/${recipe4.id}"><img src="${recipe4.image}"/></a>
 		    		<h3>${recipe4.recipeName}</h3>

@@ -32,7 +32,9 @@
     		
     		<div class="signupbutton"><li><a href="/userbla">Signup</a></li></div>
     		<div class="loginbutton"><li><a href="/login">Login</a></li></div>
-    		<div><li><a href="/login">Logout</a></li></div>
+    		<form action="/logout" method="post"><input type="submit" value="Log out"/>
+    			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    		</form>
     	</ul>
     </header>
 	<main>
@@ -52,10 +54,10 @@
 					<td>
 						<sf:select path="recipeGroup">
 							<sf:option value="bakstur" label="Bakstur"/>
-							<sf:option value="eftirrettir" label="Eftirréttir"/>
-							<sf:option value="forrettir" label="Forréttir"/>
-							<sf:option value="hrafaedi" label="Hráfæði"/>
-							<sf:option value="kvoldmatur" label="Kvöldmatur"/>
+							<sf:option value="eftirrettir" label="Eftirrï¿½ttir"/>
+							<sf:option value="forrettir" label="Forrï¿½ttir"/>
+							<sf:option value="hrafaedi" label="Hrï¿½fï¿½ï¿½i"/>
+							<sf:option value="kvoldmatur" label="Kvï¿½ldmatur"/>
 							<sf:option value="morgunmatur" label="Morgunmatur"/>
 						</sf:select>
 					</td>

@@ -32,7 +32,9 @@
    			
    			<div class="signupbutton"><li><a href="/userbla">Signup</a></li></div>
    			<div class="loginbutton"><li><a href="/login">Login</a></li></div>
-   			<div><li><a href="/login">Logout</a></li></div>
+   			<form action="/logout" method="post"><input type="submit" value="Log out"/>
+    			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    		</form>
    		</ul>
    	</header>
 	<main>
