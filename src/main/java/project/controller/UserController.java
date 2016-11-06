@@ -49,12 +49,12 @@ public class UserController {
 	public String myPageViewGet(Model model){
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String search = auth.getName(); //get logged in username
-		System.out.println(search);
-		System.out.println(recipeService.findByUsername(search));
+	    String loggedInUser = auth.getName(); //get logged in username
+		System.out.println(loggedInUser);
+		//System.out.println(recipeService.findByUsername(search));
 		
-		model.addAttribute("recipes", recipeService.findByUsername(search));
-
+		model.addAttribute("recipes", recipeService.findByUsername(loggedInUser));
+		model.addAttribute("loggedInUser", loggedInUser);
 		return "user/MyPage";
 	}
 	

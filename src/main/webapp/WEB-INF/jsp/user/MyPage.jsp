@@ -44,11 +44,10 @@
 		    <c:choose>
 		    	<c:when test="${not empty recipes}">
                		<c:forEach var="recipe" items="${recipes}">
-               		
-               		
 							<section class="uppskriftir_texti">
 								<a href="/recipes/${recipe.id}">${recipe.recipeName}</a>
 							</section>
+							
 					
                   	</c:forEach>
         		</c:when>

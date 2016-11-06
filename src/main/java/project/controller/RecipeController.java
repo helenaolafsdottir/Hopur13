@@ -39,6 +39,10 @@ public class RecipeController {
 		model.addAttribute("recipe5", recipeService.findById(5L));
 		model.addAttribute("recipe6", recipeService.findById(6L));
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+		
 		return "Index";
 	}
 	
