@@ -20,6 +20,7 @@ public class Recipe {
     public String username;
     public String instructions;
     public String image;
+    public int counter;
     
 
     // Notice the empty constructor, because we need to be able to create an empty PostitNote to add
@@ -91,5 +92,14 @@ public class Recipe {
     public void setImage(String image) {
         this.image = image;
     }
+    
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setImage(int counter) {
+        this.counter = counter;
+    }
+    
   
 }

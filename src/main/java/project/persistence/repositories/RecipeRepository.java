@@ -3,6 +3,7 @@ package project.persistence.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import project.persistence.entities.Recipe;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
@@ -21,5 +22,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     Recipe findByRecipeName(String recipeName);
     Recipe findById(Long id);
     
-   
+    List<Recipe> findTop6ByOrderByCounterDesc();
 }

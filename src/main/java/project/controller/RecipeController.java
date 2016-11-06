@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import project.CreateRecipeValidator;
-import project.persistence.entities.HitsCounter;
 import project.persistence.entities.Recipe;
-import project.service.HitsCounterService;
 import project.service.RecipeService;
 
 
@@ -27,34 +25,30 @@ public class RecipeController {
 	
 	RecipeService recipeService;
 	CreateRecipeValidator recipeValidator;
-	//HitsCounterService hitsCounterService;
-	//HitsCounter hitscounter;
-	int hitsCount = 0;
-	//List<Integer> hitCounters = new ArrayList<Integer>();
-	//int[][] multi = new int[99999999][];
-	
 	@Autowired
-	public RecipeController(RecipeService recipeService, CreateRecipeValidator recipeValidator/*, HitsCounterService hitsCounterService*/){
+	public RecipeController(RecipeService recipeService, CreateRecipeValidator recipeValidator){
 		this.recipeValidator = recipeValidator;
 		this.recipeService = recipeService;
-	//	this.hitsCounterService = hitsCounterService;
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String indexViewGet(Model model){
 		
-		model.addAttribute("recipe1", recipeService.findById(1L));
+		/*model.addAttribute("recipe1", recipeService.findById(1L));
 		model.addAttribute("recipe2", recipeService.findById(2L));
 		model.addAttribute("recipe3", recipeService.findById(3L));
 		model.addAttribute("recipe4", recipeService.findById(4L));
 		model.addAttribute("recipe5", recipeService.findById(5L));
-		model.addAttribute("recipe6", recipeService.findById(6L));
+		model.addAttribute("recipe6", recipeService.findById(6L));*/
+		
+		model.addAttribute("recipes", recipeService.findTop6ByOrderByCounterDesc());
+		
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String loggedInUser = auth.getName(); //get logged in username
 		model.addAttribute("loggedInUser", loggedInUser);
 		
-	    model.addAttribute("hitCounter", hitsCount);
+	  
 	    
 		return "Index";
 	}
@@ -77,10 +71,13 @@ public class RecipeController {
         // Get all recipes with this name and add them to the model
         model.addAttribute("recipes", recipeService.findById(id));
         
+        //Uppfæra hitsCounter fyrir uppskriftina
+        Recipe recipehitscounter = recipeService.findById(id);
+        System.out.println(recipehitscounter.counter);
+        recipehitscounter.counter++;
+        System.out.println(recipehitscounter.counter);
+        recipeService.save(recipehitscounter);
         
-        hitsCount++;
-        model.addAttribute("hitCounter", hitsCount);
-
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String loggedInUser = auth.getName(); //get logged in username
 		model.addAttribute("loggedInUser", loggedInUser);
@@ -113,14 +110,10 @@ public class RecipeController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String username = auth.getName(); //get logged in username
 		formRecipe.username = username;
+		formRecipe.counter = 0;
 		recipeService.save(formRecipe);
 		
-		//Counter fyrir page hit count búinn til 
-		//hitscounter.id = formRecipe.id;
-		//hitscounter.counter = 0;
-		//hitsCounterService.save(hitscounter);
-		
-		//Dót fyrir hitsCounter - gamalt
+		//Sækja id fyrir recipeið sem var verið að save-a
 		String name = formRecipe.recipeName;
 		Recipe recipe = recipeService.findByRecipeName(name);
 		Long recipeId = recipe.id;

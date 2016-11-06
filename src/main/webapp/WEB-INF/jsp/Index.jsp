@@ -48,39 +48,24 @@
     		</ul>
     	</header>
     	<main>
-		    <section class="forsiduUppskriftir">
-		    	<h2>Vins�lar K�kuuppskriftir</h2>
-		    	<section class="forsiduUppskrift1">
-		    		<a href="/recipes/${recipe1.id}"><img src="${recipe1.image}"/></a>
-		    		<h3>${recipe1.recipeName}</h3>
-		    		<a href="/recipes/${recipe1.id}" class="forsiduUppskriftirTakki">View Recipe</a>
-		    	</section>
-		    	<section class="forsiduUppskrift2">
-		    		<a href="/recipes/${recipe2.id}"><img src="${recipe2.image}"/></a>
-		    		<h3>${recipe2.recipeName}</h3>
-		    		<a href="/recipes/${recipe2.id}" class="forsiduUppskriftirTakki">View Recipe</a>
-		    	</section>
-		    	<section class="forsiduUppskrift3">
-		    		<a href="/recipes/${recipe3.id}"><img src="${recipe3.image}"/></a>
-		    		<h3>${recipe3.recipeName}</h3>
-		    		<a href="/recipes/${recipe3.id}" class="forsiduUppskriftirTakki">View Recipe</a>
-		    	</section>
-		    	<h2>Vins�lir R�ttir</h2>
-		    	<section class="forsiduUppskrift4">
-		    		<a href="/recipes/${recipe4.id}"><img src="${recipe4.image}"/></a>
-		    		<h3>${recipe4.recipeName}</h3>
-		    		<a href="/recipes/${recipe4.id}" class="forsiduUppskriftirTakki">View Recipe</a>
-		    	</section>
-		    	<section class="forsiduUppskrift5">
-		    		<a href="/recipes/${recipe5.id}"><img src="${recipe5.image}"/></a>
-		    		<h3>${recipe5.recipeName}</h3>
-		    		<a href="/recipes/${recipe5.id}" class="forsiduUppskriftirTakki">View Recipe</a>
-		    	</section>
-		    	<section class="forsiduUppskrift6">
-		    		<a href="/recipes/${recipe6.id}"><img src="${recipe6.image}"/></a>
-		    		<h3>${recipe6.recipeName}</h3>
-		    		<a href="/recipes/${recipe6.id}" class="forsiduUppskriftirTakki">View Recipe</a>
-		    	</section>
+		    <section class="uppskriftir">
+
+                		<%--For each recipes, that is in the list that was passed in the model--%>
+                		<%--generate a row in the table--%>
+                		<%--Here we set `recipe` as a singular item out of the list `recipes`--%>
+                		<c:forEach var="recipe" items="${recipes}">
+                    		<div class="einUppskrift">
+                    			<div class="uppskriftir_mynd">
+									<img src=${recipe.image} class="myndFyrirUppskrift">
+								</div>
+								<section class="uppskriftir_texti">
+									
+									<h3>${recipe.recipeName}</h3>
+									<a class="forsiduUppskriftirTakki" href="/recipes/${recipe.id}">View Recipe</a>
+								</section>
+							</div>
+                   		</c:forEach>
+            		</section>
 		    </section>
 		    <p>${hitCounter}</p>
     	</main>

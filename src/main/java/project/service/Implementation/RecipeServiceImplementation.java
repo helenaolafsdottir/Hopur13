@@ -63,4 +63,10 @@ public class RecipeServiceImplementation implements RecipeService{
 		public List<Recipe> findByUsername(String search) {
 			return repository.findByUsername(search);
 		}
+
+
+		@Override
+		public List<Recipe> findTop6ByOrderByCounterDesc() {
+			return repository.findTop6ByOrderByCounterDesc();
+		}
 }

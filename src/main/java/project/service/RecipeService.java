@@ -2,7 +2,6 @@ package project.service;
 
 import java.util.List;
 
-
 import project.persistence.entities.Recipe;
 
 public interface RecipeService {
@@ -25,10 +24,5 @@ public interface RecipeService {
 	Recipe findOne(Long id);
 	List<Recipe> findByUsername(String search);
 	
-	//List<Recipe> findFirstThreeRecipes();
-	//Recipe insertFirstRecipe();
-	
-	//List<Recipe> findBySearchconditionAndSearchtype(String searchCondition, String searchType);
-	
-   
+	List<Recipe> findTop6ByOrderByCounterDesc();
 }
