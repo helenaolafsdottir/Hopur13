@@ -54,19 +54,27 @@
 						</tr>
 						<tr>
 							<td>Username:</td>
-							<td><sf:textarea path="userName" type="text" placeholder="Username here"/></td>
+							<td><sf:input path="userName" type="text" placeholder="Username here"/></td>
+							<td>&nbsp; &nbsp; &nbsp;</td>
+							<td><sf:errors path="userName" cssClass="error" /></td>
 						</tr>
 						<tr>
 							<td>Password:</td>
 							<td><sf:input name="password" type="password" path="password" placeholder="Password here"/></td>
+							<td>&nbsp; &nbsp; &nbsp;</td>
+							<td><sf:errors path="password" cssClass="error" /></td>
 						</tr>
 						<tr>
-							<td>Password again:</td>
-							<td><sf:input name="password" type="password" path="passwordConfirm" placeholder="Password again here"/></td>
+							<td>Confirm Password:</td>
+							<td><sf:input name="password" type="password" path="passwordConfirm" placeholder="Retype password"/></td>
+							<td>&nbsp; &nbsp; &nbsp;</td>
+							<td><sf:errors path="passwordConfirm" cssClass="error" /></td>
 						</tr>
 						<tr>
 							<td>Email:</td>
-							<td><sf:textarea path="email" type="text" placeholder="Email here"/></td>
+							<td><sf:input path="email" type="text" placeholder="Email here"/></td>
+							<td>&nbsp; &nbsp; &nbsp;</td>
+							<td><sf:errors path="email" cssClass="error" /></td>
 						</tr>
 					</table>
 					<div class="create_recipe_takki_div"><input class="create_recipe_takki"  type="submit" VALUE="Sign Up!"/></div>

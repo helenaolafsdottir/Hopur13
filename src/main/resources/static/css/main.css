@@ -39,6 +39,13 @@ main {
 	min-height: 100%; /* ath!!!!! */
 }
 
+.error {
+	font-size: 80%;
+	color: #FFACAC;
+	font-style: italic;
+	font-weight: bold;
+}
+
 .nav > li a{
 	display: inline-block;
 	white-space: nowrap;
@@ -257,9 +264,10 @@ table.notes tr:nth-child(odd) {
 }
 .create_recipe_table {
 	margin:auto;
-	width: 70%;
+	width: 90%;
 	margin-bottom: 5%;
 }
+
 .create_recipe_form h2 {
 	margin: auto;
 	width: 40%;
@@ -279,7 +287,8 @@ table.notes tr:nth-child(odd) {
 	vertical-align: top;
 }
 .instructions {
-	height: 300px;
+	resize: none;
+	height: 200px;
 	padding-top: 0;
 	wrap: hard;
 	max-width: 

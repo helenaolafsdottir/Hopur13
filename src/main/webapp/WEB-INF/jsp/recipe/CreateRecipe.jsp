@@ -44,27 +44,39 @@
 				<tr>
 					<td>Recipe Name:</td>
 					<td><sf:input path="recipeName" type="text" placeholder="Recipe Name here"/></td>
+					<td> &nbsp; &nbsp; &nbsp; </td>
+					<td><sf:errors path="recipeName" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>Recipe group:</td>
 					<td>
 						<sf:select path="recipeGroup">
-							<sf:option value="Kaka" label="Kaka"/>
-							<sf:option value="Matur" label="matur"/>
+							<sf:option value="bakstur" label="Bakstur"/>
+							<sf:option value="eftirrettir" label="Eftirréttir"/>
+							<sf:option value="forrettir" label="Forréttir"/>
+							<sf:option value="hrafaedi" label="Hráfæði"/>
+							<sf:option value="kvoldmatur" label="Kvöldmatur"/>
+							<sf:option value="morgunmatur" label="Morgunmatur"/>
 						</sf:select>
 					</td>
 				</tr>
 				<tr>
 					<td>Ingredients:</td>
 					<td><sf:input path="ingredients" type="text" placeholder="List the ingredients here"/></td>
+					<td> &nbsp; &nbsp; &nbsp; </td>
+					<td><sf:errors path="ingredients" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td class="instruction_text">Instructions:</td>
 					<td><sf:textarea class="instructions" path="instructions" type="text" placeholder="Instructions here"/></td>
+					<td> &nbsp; &nbsp; &nbsp; </td>
+					<td><sf:errors path="instructions" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>Image:</td>
 					<td><sf:input path="image" type="textarea" placeholder="Image url here"/></td>
+					<td> &nbsp; &nbsp; &nbsp; </td>
+					<td><sf:errors path="image" cssClass="error"/></td>
 				</tr>
 			</table>
 			<div class="create_recipe_takki_div"><input class="create_recipe_takki" type="submit" VALUE="Save Recipe!"/></div>
