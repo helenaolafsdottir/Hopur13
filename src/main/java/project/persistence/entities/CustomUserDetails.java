@@ -2,7 +2,6 @@ package project.persistence.entities;
 
 import java.util.Collection;
 import java.util.List;
-import project.persistence.entities.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

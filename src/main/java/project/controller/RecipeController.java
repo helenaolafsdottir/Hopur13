@@ -1,7 +1,5 @@
 package project.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,14 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import antlr.collections.List;
 import project.CreateRecipeValidator;
-import project.UserValidator;
-import project.persistence.entities.PostitNote;
 import project.persistence.entities.Recipe;
-import project.persistence.entities.User;
 import project.service.RecipeService;
-import project.service.StringManipulationService;
+
 
 @Controller
 public class RecipeController {
