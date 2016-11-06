@@ -24,11 +24,9 @@ public class ErrorController {
 		
 		final String error_message=errorService.generateErrorMessage(error_code);
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String loggedInUser = auth.getName(); //get logged in username
+		String loggedInUser = request.getRemoteUser();
 		model.addAttribute("loggedInUser", loggedInUser);
-		
-		
+			
 		model.addAttribute("errorMsg", error_message);
 		return "errors/errorPage";
 	}
