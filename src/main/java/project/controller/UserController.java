@@ -56,15 +56,19 @@ public class UserController {
 		
 		return "user/Users";
 	}
-
+	/**
+	 * Is called when Request mapping url is accessed with GET
+	 * Finds all recipes with a specific username
+	 * @param model
+	 * @return Mypage jsp
+	 */
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
 	public String myPageViewGet(Model model){
-		
+		//get logged in user
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String loggedInUser = auth.getName(); //get logged in username
-		System.out.println(loggedInUser);
-		//System.out.println(recipeService.findByUsername(search));
 		
+	    //adds all recipes with a specific username to variable recipes in model
 		model.addAttribute("recipes", recipeService.findByUsername(loggedInUser));
 		model.addAttribute("loggedInUser", loggedInUser);
 		return "user/MyPage";
