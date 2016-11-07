@@ -23,47 +23,49 @@ import project.service.RecipeService;
 @Controller
 public class RecipeController {
 	
+	//Initialization of the classes that will be used
 	RecipeService recipeService;
 	CreateRecipeValidator recipeValidator;
+	
+	// Dependency Injection
 	@Autowired
 	public RecipeController(RecipeService recipeService, CreateRecipeValidator recipeValidator){
 		this.recipeValidator = recipeValidator;
 		this.recipeService = recipeService;
 	}
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String indexViewGet(Model model){
 		
-		/*model.addAttribute("recipe1", recipeService.findById(1L));
-		model.addAttribute("recipe2", recipeService.findById(2L));
-		model.addAttribute("recipe3", recipeService.findById(3L));
-		model.addAttribute("recipe4", recipeService.findById(4L));
-		model.addAttribute("recipe5", recipeService.findById(5L));
-		model.addAttribute("recipe6", recipeService.findById(6L));*/
-		
+		//Add the 6 most popular recipes to the model
 		model.addAttribute("recipes", recipeService.findTop6ByOrderByCounterDesc());
 		
-		
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String loggedInUser = auth.getName(); //get logged in username
 		model.addAttribute("loggedInUser", loggedInUser);
 		
-	  
-	    
+		//Return the view
 		return "Index";
 	}
 	
     @RequestMapping(value = "/recipes", method = RequestMethod.GET)
 	public String recipeViewGet(Model model){
 		
+    	//Add all the recipes to the model
 		model.addAttribute("recipes", recipeService.findAllReverseOrder());
 	
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String loggedInUser = auth.getName(); //get logged in username
 		model.addAttribute("loggedInUser", loggedInUser);
 		
+		//Return the view
 		return "recipe/Recipes";
 	}
+    
     @RequestMapping(value = "/recipes/{id}", method = RequestMethod.GET)
     public String recipesGetRecipeFromId(@PathVariable Long id,
                                              Model model){
@@ -71,13 +73,13 @@ public class RecipeController {
         // Get all recipes with this name and add them to the model
         model.addAttribute("recipes", recipeService.findById(id));
         
-        //Uppfæra hitsCounter fyrir uppskriftina
+        //Update hitsCounter for this recipe
         Recipe recipehitscounter = recipeService.findById(id);
-        System.out.println(recipehitscounter.counter);
         recipehitscounter.counter++;
-        System.out.println(recipehitscounter.counter);
         recipeService.save(recipehitscounter);
         
+        //This functionality is for the login/logout button
+        //Get the logged in username so we can see if the user has logged in or not
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String loggedInUser = auth.getName(); //get logged in username
 		model.addAttribute("loggedInUser", loggedInUser);
@@ -88,14 +90,17 @@ public class RecipeController {
 
 	@RequestMapping(value = "/createRecipe", method = RequestMethod.GET)
 	public String createRecipeViewGet(Model model){
+		
+		//Add a new recipe to the model for the form
 		model.addAttribute("recipe", new Recipe());
 		
-		model.addAttribute("recipes", recipeService.findAllReverseOrder());
-		
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String loggedInUser = auth.getName(); //get logged in username
 		model.addAttribute("loggedInUser", loggedInUser);
 		
+		//Return the view
 		return "recipe/CreateRecipe";
 	}
 	
@@ -103,31 +108,30 @@ public class RecipeController {
 	@RequestMapping(value = "/createRecipe", method = RequestMethod.POST)
 	public String createRecipeViewPost(@ModelAttribute("recipe") Recipe formRecipe, BindingResult bindingResult, Model model){
 		
+		//Validator for the createRecipe form
 		recipeValidator.validate(formRecipe, bindingResult);
 		if(bindingResult.hasErrors()){
 			return "recipe/CreateRecipe";
 		}
+		
+		//Add counter and username to the recipe and save it to the db
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String username = auth.getName(); //get logged in username
 		formRecipe.username = username;
 		formRecipe.counter = 0;
 		recipeService.save(formRecipe);
 		
-		//Sækja id fyrir recipeið sem var verið að save-a
+		//Get the id of the recipe being saved
 		String name = formRecipe.recipeName;
 		Recipe recipe = recipeService.findByRecipeName(name);
 		Long recipeId = recipe.id;
-		int recipeIdint = recipeId.intValue();
-		System.out.println(recipeIdint);
 		
-		//Fundið út hver er að vista uppskriftina
-		String loggedInUser = auth.getName(); //get logged in username
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
+		String loggedInUser = auth.getName(); 
 		model.addAttribute("loggedInUser", loggedInUser);
 		
-		//hitCounters.add(recipeIdint);
-		//multi[recipeIdint] = new int[recipeIdint];
-		//System.out.println(multi[recipeIdint]);
-		
+		//return the new recipes page if the creation was successful
 		return "redirect:/recipes/" + recipeId;
 	}
 	

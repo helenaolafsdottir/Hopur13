@@ -13,6 +13,7 @@ import project.service.RecipeService;
 @Service
 public class RecipeServiceImplementation implements RecipeService{
 	 
+		//Instance variable
 		RecipeRepository repository;
 
 	    
@@ -22,12 +23,10 @@ public class RecipeServiceImplementation implements RecipeService{
 	        this.repository = repository;
 	    }
 	 
-	
 	    public Recipe save(Recipe recipe) {
 	        return repository.save(recipe);
 	    }
 
-	   
 	    public void delete(Recipe recipe) {
 	        repository.delete(recipe);
 	    }

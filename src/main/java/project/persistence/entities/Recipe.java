@@ -23,20 +23,11 @@ public class Recipe {
     public int counter;
     
 
-    // Notice the empty constructor, because we need to be able to create an empty PostitNote to add
+    // An empty constructor, because we need to be able to create an empty Recipe to add
     // to our model so we can use it with our form
     public Recipe() {
     }
-/*
-    public Recipe(String recipeName, String recipeGroup, String ingredients, String username, String instructions, String image) {
-        this.recipeName = recipeName;
-        this.recipeGroup = recipeGroup;
-        this.ingredients = ingredients;
-        this.username = username;
-        this.instructions = instructions;
-        this.image = image	;
-    }
-   */
+    
     public Long getId() {
         return id;
     }
@@ -44,7 +35,7 @@ public class Recipe {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public String getRecipeName() {
         return recipeName;
     }
