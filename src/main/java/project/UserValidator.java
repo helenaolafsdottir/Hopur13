@@ -21,7 +21,9 @@ public class UserValidator implements Validator{
 	public boolean supports(Class<?> aClass){
 		return User.class.equals(aClass);
 	}
-	
+	/**
+	 * This method validates the user
+	 */
 	@Override
 	public void validate(Object o, Errors errors) {
 		User user = (User) o;
@@ -49,7 +51,11 @@ public class UserValidator implements Validator{
 		}
 		
 	}
-	
+	/**
+	 * Checks if email address is valid
+	 * @param emailAddress is the specific email
+	 * @return if the email is valid or not
+	 */
 	public boolean isValidEmailAddress(String emailAddress){ 
         String expression="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"; 
         CharSequence inputStr = emailAddress; 

@@ -10,9 +10,14 @@ import org.springframework.stereotype.Service;
 public class ErrorService {
 	@Autowired
 	private Environment env;
-	
+	/**
+	 * the error message is generated
+	 * @param error_code
+	 * @return
+	 */
 	public String generateErrorMessage(final int error_code){
 		String message="";
+			//gets message for specific errorcode from property file
 			switch(error_code){
 				case 400: message=env.getProperty("400");
 					break;

@@ -14,7 +14,6 @@ import project.service.UserService;
 
 @Service
 public class UserServiceImplementation implements UserService{
-	
 	UserRepository repository;
 	UserRolesRepository userRolesRepository;
 	
@@ -39,6 +38,10 @@ public class UserServiceImplementation implements UserService{
 		return repository.findAll();
 	}
 	
+	/**
+	 * This method finds all the users and returns them in reverse order
+	 * @return list of users in reverse order
+	 */
 	@Override
 	public List<User> findAllReverseOrder(){
 		List<User> users = repository.findAll();
@@ -58,6 +61,11 @@ public class UserServiceImplementation implements UserService{
 		return repository.findByName(name);
 	}
 	
+	/**
+	 * This method saves the userRole
+	 * @param the userRole to be saved
+	 * @return the specific UserRole that was saved
+	 */
 	@Override
 	public UserRole save(UserRole userRole){
 		return userRolesRepository.save(userRole);

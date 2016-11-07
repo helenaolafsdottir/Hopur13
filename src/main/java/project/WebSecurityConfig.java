@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/myPage").access("hasRole('ROLE_USER')") //temporarily open for all sites
+				.antMatchers("/myPage").access("hasRole('ROLE_USER')")
 				.anyRequest().permitAll()
 				.and()
 			.formLogin()
