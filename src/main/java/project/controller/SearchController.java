@@ -1,6 +1,5 @@
 package project.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,36 +16,28 @@ import project.persistence.repositories.RecipeRepository;
 @Controller
 public class SearchController {
 
-	
-	 // Instance Variables
-   SearchService searchService; 
+	// Instance Variables
+	SearchService searchService;
 
-    // Dependency Injection
-    @Autowired
-    public SearchController(SearchService searchService) {
-        this.searchService = searchService;
-    }
-    
-  /*  @RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String searchViewGet(Model model){
-		//model.addAttribute("recipe", new Recipe());
-		
-		//model.addAttribute("recipes", searchService.findAllReverseOrder());
-		
-		return "Index";
-	}*/ 
-    
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String searchViewPost(@RequestParam("searchcond") String searchcond,@RequestParam("search") String search, Model model){
-    	
-		//model.addAttribute("recipe", new Recipe());
-    	
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String loggedInUser = auth.getName(); //get logged in username
+	// Dependency Injection
+	@Autowired
+	public SearchController(SearchService searchService) {
+		this.searchService = searchService;
+	}
+	
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String searchViewPost(@RequestParam("searchcond") String searchcond, @RequestParam("search") String search,
+			Model model) {
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); // get logged in username
 		model.addAttribute("loggedInUser", loggedInUser);
-    	
-		model.addAttribute("recipes", searchService.findAllWithCond(searchcond, search));
 		
+		//Add all recipes found using specific search conditions to the model.
+		model.addAttribute("recipes", searchService.findAllWithCond(searchcond, search));
+
+		//Return the view
 		return "search/Search";
 	}
 }

@@ -46,19 +46,16 @@
     	</header>
 
 		<main>
-		    <%--Note that the `commandName` given here HAS TO MATCH the name of the attribute--%>
-		    <%--that is added to the model that is passed to the view.--%>
-		    <%--See PostitNoteController, method postitNoteViewGet(), and find where this attribute is added to the model.--%>
 		
+		    <%--Choose what code to generate based on tests that we implement--%>		
 			<c:choose>
-		        <%--If the model has an attribute with the name `postitNotes`--%>
 		        <c:when test="${not empty recipes}">
 		            <%--Create a table for the Postit Notes--%>
 		            <div class="uppskriftir">
 		
-		                <%--For each recipe, that is in the list that was passed in the model--%>
-		                <%--generate a row in the table--%>
-		                <%--Here we set `recipe` as a singular item out of the list `postitNotes`--%>
+		                <%--For each recipes, that is in the list that was passed in the model--%>
+                		<%--generate a row in the table--%>
+                		<%--Here we set `recipe` as a singular item out of the list `recipes`--%>
 		                <c:forEach var="recipe" items="${recipes}">
 							<div class="uppskriftir_mynd">
 									<img src=${recipe.image} class="myndFyrirUppskrift">
@@ -72,6 +69,8 @@
 		                </c:forEach>
 		            </div>
 		        </c:when>
+		        
+		        <%--If all tests are false, then do this--%>		     
 		        <c:otherwise>
 		            <h3>No recipes!</h3>
 		        </c:otherwise>
