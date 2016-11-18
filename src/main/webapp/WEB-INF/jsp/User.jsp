@@ -34,5 +34,11 @@
 
 
     </body>
-
+	<footer class="footer">
+    		<div class="footer-container">
+    			<p> Class HBV501G, University of Iceland, Fall 2016</p>
+    		</div>
+    </footer>
+    <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </html>
