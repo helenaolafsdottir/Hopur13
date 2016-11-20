@@ -61,7 +61,7 @@
 								<div class="form-group ${status.error ? 'has-error' : ''}">
 									<label class="control-label">Password</label>
 
-									<sf:input path="password" type="text" class="form-control"
+									<sf:input path="password" type="password" class="form-control"
 										id="password" placeholder="Choose a Password" />
 									<br>
 									<sf:errors path="password" class="control-label" />
