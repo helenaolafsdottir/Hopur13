@@ -19,8 +19,9 @@ public class Recipe {
     public String ingredients;
     public String username;
     public String instructions;
-    public String image;
     public int counter;
+    @Column(name = "image", length = 1024)
+    public String image;
     
 
     // An empty constructor, because we need to be able to create an empty Recipe to add
