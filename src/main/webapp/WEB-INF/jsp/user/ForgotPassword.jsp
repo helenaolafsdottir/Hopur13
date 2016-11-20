@@ -46,23 +46,16 @@
    		</ul>
    	</header>
 	<main>
-		<section class="create_recipe_form">
-			<br>
-			<sf:form method="POST" action="/login">
+		<sf:form method="POST" action="/forgotPassword">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<table class="create_recipe_table">
 					<tr>
-						<td>Username:</td>
-						<td><input name="username" type="text" placeholder="Username here"/></td>
-					</tr>
-					<tr>
-						<td>Password:</td>
-						<td><input name="password" type="password" placeholder="Password here"/></td>
+						<td>Email:</td>
+						<td><input name="emailForgot" type="email" placeholder="Email here"/></td>
 					</tr>
 				</table>
-				<div class="create_recipe_takki_div"><input class="create_recipe_takki"  type="submit" VALUE="Log In!"/></div>
-				<div class="create_recipe_takki_div"><a href="/forgotPassword">Forgot password?</a></div>
-			</sf:form>
+				<input type="submit" VALUE="Send email"/>
+		</sf:form>
 			<c:choose>
 		   		<c:when test="${resultMessage eq null}">
     				
@@ -72,7 +65,6 @@
     				<div>${resultMessage}</div>
     			</c:otherwise>
     		</c:choose>
-		</section>
 	</main>
 </body>
 

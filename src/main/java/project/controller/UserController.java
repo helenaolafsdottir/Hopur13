@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import antlr.collections.List;
 import project.UserValidator;
@@ -104,6 +105,13 @@ public class UserController {
 		formUser.setPassword(encodedPassword);
 		formUser.setPasswordConfirm(encodedPassword);
 		
+		if(userService.findByEmail(formUser.getEmail()) != null){
+			model.addAttribute("resultMessage", "Email already exists");
+			return "user/Users";
+		}
+		if(userService.findByUserName(formUser.getUserName()) != null){
+			model.addAttribute("resultMessage", "Username already exists");
+		}
 		//the formUser is saved and the saved user returned
 		User savedUser = userService.save(formUser);
 		//get id from the saved user
@@ -140,5 +148,32 @@ public class UserController {
 		model.addAttribute("loggedInUser", loggedInUser);
 		//login jsp is returned
 		return "user/Login";
+	}
+	
+	@RequestMapping(value="/changePassword", method=RequestMethod.GET)
+	public String changePasswordViewGet(Model model){
+		return "user/ChangePassword";
+	}
+	
+	@RequestMapping(value="/changePassword", method=RequestMethod.POST)
+	public String changePasswordViewPost(Model model, @RequestParam("resetPassword") String resetPassword, @RequestParam("resetPasswordAgain") String resetPasswordAgain){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName();
+		model.addAttribute("loggedInUser", loggedInUser);
+		User user = userService.findByUserName(loggedInUser);
+		if(!resetPassword.equals(resetPasswordAgain)){
+			model.addAttribute("resultMessage", "Passwords do not match!");
+			return "user/ChangePassword";
+		}
+		if(resetPassword.length()<8){
+			model.addAttribute("resultMessage", "Password has to be longer than 7 letters!");
+			return "user/ChangePassword";
+		}
+		String encodedResetPassword = passwordEncoder.encode(resetPassword);
+		user.setPassword(encodedResetPassword);
+		user.setPasswordConfirm(encodedResetPassword);
+		userService.save(user);
+		model.addAttribute("resultMessage", "Password has been reset!");
+		return "user/ChangePassword";
 	}
 }

@@ -62,6 +62,11 @@
         		    <p>You haven't posted any recipes yet, click on the Create Recipe button to post one right now!</p>
         		</c:otherwise>
    			 </c:choose>
+ 			<c:choose>
+	    		<c:when test="${loggedInUser ne 'anonymousUser'}">
+					<div class="loginbutton"><li><a href="/changePassword">Change password</a></li></div>
+				</c:when>
+			</c:choose>
     	</main>
     </body>
     <footer>Class HBV501G, University of Iceland, Fall 2015</footer>

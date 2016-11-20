@@ -46,33 +46,29 @@
    		</ul>
    	</header>
 	<main>
-		<section class="create_recipe_form">
-			<br>
-			<sf:form method="POST" action="/login">
+		<sf:form method="POST" action="/changePassword">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<table class="create_recipe_table">
 					<tr>
-						<td>Username:</td>
-						<td><input name="username" type="text" placeholder="Username here"/></td>
+						<td>New password:</td>
+						<td><input name="resetPassword" type="password" placeholder="New password here!"/></td>
 					</tr>
 					<tr>
-						<td>Password:</td>
-						<td><input name="password" type="password" placeholder="Password here"/></td>
+						<td>New password again:</td>
+						<td><input name="resetPasswordAgain" type="password" placeholder="New password again here!"/></td>
 					</tr>
 				</table>
-				<div class="create_recipe_takki_div"><input class="create_recipe_takki"  type="submit" VALUE="Log In!"/></div>
-				<div class="create_recipe_takki_div"><a href="/forgotPassword">Forgot password?</a></div>
-			</sf:form>
-			<c:choose>
-		   		<c:when test="${resultMessage eq null}">
-    				
-    			</c:when>
-    		
-    			<c:otherwise>
-    				<div>${resultMessage}</div>
-    			</c:otherwise>
-    		</c:choose>
-		</section>
+				<input type="submit" VALUE="Reset password"/>
+		</sf:form>
+		<c:choose>
+		   	<c:when test="${resultMessage eq null}">
+   
+    		</c:when>
+    
+    		<c:otherwise>
+    			<div>${resultMessage}</div>
+    		</c:otherwise>
+    	</c:choose>
 	</main>
 </body>
 

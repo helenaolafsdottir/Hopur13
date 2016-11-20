@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import project.persistence.entities.PasswordResetToken;
 import project.persistence.entities.User;
 /**
  * This interface accesses the user database tables. 
@@ -50,4 +51,13 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	 * @return user with the username if it exists, else null
 	 */
 	User findByUserName(String username);
+	/**
+	 * Finds a user with a specific email
+	 * @param email
+	 * @return user with the email if it exists, else null
+	 */
+	User findByEmail(String email);
+	
+	
+	
 }

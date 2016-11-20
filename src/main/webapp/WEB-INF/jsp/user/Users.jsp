@@ -88,6 +88,13 @@
 					</table>
 					<div class="create_recipe_takki_div"><input class="create_recipe_takki"  type="submit" VALUE="Sign Up!"/></div>
 				</sf:form>
+				<c:choose>
+			   		<c:when test="${resultMessage eq null}">
+  					</c:when>
+  					<c:otherwise>
+    					<div>${resultMessage}</div>
+    				</c:otherwise>
+    			</c:choose>
 			</section>
 		</main>
 	</body>

@@ -19,4 +19,6 @@ public class ApplicationConfig {
 	     messageSource.setBasename("/WEB-INF/validation");
 	     return messageSource;
 	}
+	
+
 }

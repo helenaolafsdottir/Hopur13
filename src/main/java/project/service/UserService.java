@@ -2,6 +2,7 @@ package project.service;
 
 import java.util.List;
 
+import project.persistence.entities.PasswordResetToken;
 import project.persistence.entities.User;
 import project.persistence.entities.UserRole;
 
@@ -51,5 +52,18 @@ public interface UserService {
 	 * @return the specific UserRole that was saved
 	 */
 	UserRole save(UserRole userRole);
+	
+	/**
+	 * Finds user by email
+	 * @param email
+	 * @return User with that specific email,null if it does not exist
+	 */
+	User findByEmail(String email);
+	
+	PasswordResetToken createPasswordResetTokenForUser(User user, String token);
+	
+	PasswordResetToken findPasswordResetTokenByToken(String token);
+	
+	User findByUserName(String username);
 	
 }
