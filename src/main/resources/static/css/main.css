@@ -1,4 +1,3 @@
-
 html, body {
 	background: #F5F5F0;
 	margin: 0;
@@ -6,17 +5,40 @@ html, body {
 	height: 100%;
 }
 
-.nav {
-	height: 250px;
-	background: #898176;
-	text-align: center;
-	list-style: none;
-	margin: 0;
+.navbar{
 	overflow: hidden;
 	clear: both;
-	padding: 0% 7%;
 }
-/* ---------- ForsÃ­Ã°a --------- */
+
+div .container{
+	height: 100px;
+	width: 100px;
+}
+
+.footer{
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	display: block;
+}
+
+.footer p{
+	text-align: center;
+}
+
+.footer container-fluid{
+	width: auto;
+	max-width: 680px;
+	padding: 0 15px; 
+}
+
+
+
+ /*---------- Forsíða --------- */
+
+
+/*
 header ul {
 	padding: 0;
 	margin:0;
@@ -38,7 +60,7 @@ main {
 	margin: 2% 8.5%;	
 	min-height: 100%; /* ath!!!!! */
 }
-
+/*
 .error {
 	font-size: 80%;
 	color: #FFACAC;
@@ -211,6 +233,7 @@ table.notes tr:nth-child(odd) {
 }
 
 /* ------------One Recipe------------ */ 
+/*
 .one_recipe {
 		height: 850px;
 		margin: 3em 0;
@@ -227,6 +250,7 @@ table.notes tr:nth-child(odd) {
 
 /* ------------Recipes--------------- */
 
+/*
 .uppskriftir {
 	height: auto;
 	-webkit-column-count: 3;
@@ -255,7 +279,7 @@ table.notes tr:nth-child(odd) {
 }
 
 /* ---------- Create Recipe --------- */
-
+/*
 .create_recipe_form {
 	height: 600px;
 	font-size: 120%;
@@ -312,4 +336,10 @@ table.notes tr:nth-child(odd) {
 .create_recipe_takki_div {
 	margin: auto;
 	width: 50%;
+}
+*/ 
+
+
+
+
 }

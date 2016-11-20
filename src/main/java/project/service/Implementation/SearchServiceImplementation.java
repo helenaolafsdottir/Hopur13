@@ -21,38 +21,13 @@ public class SearchServiceImplementation implements SearchService {
     public SearchServiceImplementation(RecipeRepository repository) {
         this.repository = repository;
     }
- 
-    @Override
-    public Recipe save(Recipe recipe) {
-        return repository.save(recipe);
-    }
-
-    @Override
-    public void delete(Recipe recipe) {
-        repository.delete(recipe);
-    }
-
-    @Override
-    public List<Recipe> findAll() {
-        return repository.findAll();
-    }
-
-    @Override
-    public List<Recipe> findAllReverseOrder() {
-        // Get all the Postit notes
-        List<Recipe> recipes = repository.findAll();
-
-        // Reverse the list
-        Collections.reverse(recipes);
-
-        return recipes;
-    }
-
-    @Override
-    public Recipe findOne(Long id) {
-        return repository.findOne(id);
-    }
-   
+	
+	/**
+	 * Finds all recipes according to specific search conditions.
+	 * @param the search condition to specify what to search by
+	 * @param the search itself
+	 * @return list of recipes following the search if it exists, else empty list
+	 */
 	@Override
 	public List<Recipe> findAllWithCond(String searchcond, String search) {
 		if (searchcond.equals("username")) {

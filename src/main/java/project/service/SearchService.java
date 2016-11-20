@@ -6,25 +6,14 @@ import project.persistence.entities.Recipe;
 
 
 public interface SearchService {
-
+	
 	/**
-	 * Vistar notandann í grunni
-	 * @param user
-	 * @return
+	 * Finds all recipes according to specific search conditions.
+	 * @param the search condition to specify what to search by
+	 * @param the search itself
+	 * @return list of recipes following the search if it exists, else empty list
 	 */
-	Recipe save(Recipe recipe);
-	
-	void delete(Recipe recipe);
-	
-	List<Recipe> findAll();
-	
-	List<Recipe> findAllReverseOrder();
-	
-	Recipe findOne(Long id);
-
 	List<Recipe> findAllWithCond(String searchcond, String search);
-	
-	//List<Recipe> findBySearchconditionAndSearchtype(String searchCondition, String searchType);
-	
+		
    
 }
