@@ -40,8 +40,6 @@
 
 							</div>
 
-
-
 							<div class="form-group">
 								<label class="control-label">Password</label> <input
 									name="password" type="password" class="form-control"
@@ -50,26 +48,26 @@
 
 							</div>
 
-
-							<div class="text-right">
-								<button type="submit" class="myButton">Login!</button>
+							<div>
+								<button type="submit" class="myButton text-right">Login!</button>
+								<a class="myButton text-left"  href="/forgotPassword">Forgot password?</a>
 							</div>
+							
 						</sf:form>
-
+	
 					</div>
 				</div>
 			</div>
 		</div>
 		<c:choose>
-	   		<c:when test="${resultMessage eq null}">
-				
+			<c:when test="${resultMessage eq null}">
+
 			</c:when>
-		
+
 			<c:otherwise>
 				<div>${resultMessage}</div>
 			</c:otherwise>
 		</c:choose>
-		<div class="create_recipe_takki_div"><a href="/forgotPassword">Forgot password?</a></div>
 	</section>
 </body>
 <footer class="footer">

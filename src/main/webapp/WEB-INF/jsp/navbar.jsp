@@ -35,7 +35,7 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="/">Home<span class="sr-only">(current)</span></a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
+				<li class="dropdown"><a href="\recipes" class="dropdown-toggle"
 					data-toggle="dropdown">Recipes <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="/recipes">Appetizers</a></li>
@@ -51,8 +51,8 @@
 						<input type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}" /> <select
 							class="searchcond form-control" name="searchcond">
-							<option value="username">User name</option>
-							<option value="recipe_name">Recipe name</option>
+							<option value="username">Username</option>
+							<option value="recipe_name">Recipe Name</option>
 							<option value="ingredients">Ingredients</option>
 						</select> <input class="searchtext form-control" name="search" type="text"
 							placeholder="Search" /> <input

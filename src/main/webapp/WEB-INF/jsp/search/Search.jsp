@@ -54,7 +54,7 @@
 
 		<%--If all tests are false, then do this--%>
 		<c:otherwise>
-			<h3>No Recipes Found!</h3>
+			<h3 class="text-center">No Recipes Found!</h3>
 		</c:otherwise>
 	</c:choose>
 
