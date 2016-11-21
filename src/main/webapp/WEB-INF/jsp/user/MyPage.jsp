@@ -38,15 +38,17 @@
 	</h1>
 
 	<div class="btn-group btn-group-justified text-center">
-		<a href="/createRecipe" class="myButton">Create Recipe</a> <a
-			href="/favourite" class="myButton">Favourite</a> <a
-			href="/following" class="myButton">Following</a>
+		<a href="/createRecipe" class="myButton">Create Recipe</a>
+		<a href="/changePassword" class="myButton">Change password</a>
+		<a href="/favourite" class="myButton">Favourite</a>
+		<a href="/following" class="myButton">Following</a>
 	</div>
 
-	<h3 class="text-left">Your Recipes:</h3>
+
 	<c:choose>
 
 		<c:when test="${not empty recipes}">
+			<h3 class="text-left">Your Recipes:</h3>
 			<c:forEach var="recipe" items="${recipes}">
 				<div class="col-sm-3 images">
 					<div class="caption">
@@ -62,14 +64,9 @@
 
 		<%--If all tests are false, then do this--%>
 		<c:otherwise>
-			<p>You haven't posted any recipes yet, click on the Create Recipe
-				button to post one right now!</p>
+			<h3 class="text-center">You haven't posted any recipes yet, click on the Create Recipe
+				button to post one right now!</h3>
 		</c:otherwise>
-	</c:choose>
-	<c:choose>
-		<c:when test="${loggedInUser ne 'anonymousUser'}">
-			<div class="loginbutton"><li><a href="/changePassword">Change password</a></li></div>
-		</c:when>
 	</c:choose>
 </body>
 <footer class="footer">
