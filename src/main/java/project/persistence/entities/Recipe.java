@@ -16,8 +16,10 @@ public class Recipe {
 	public Long id;
     public String recipeName;
     public String recipeGroup;
+    @Column(name = "ingredients", length = 1024)
     public String ingredients;
     public String username;
+    @Column(name = "instructions", length = 1024)
     public String instructions;
     public int counter;
     @Column(name = "image", length = 1024)

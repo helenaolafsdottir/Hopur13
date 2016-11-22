@@ -17,25 +17,13 @@
 	rel="stylesheet" media="screen">
 <link href="/css/main.css" rel="stylesheet" type="text/css">
 <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		var heights = $("img").map(function() {
-			return $(this).height();
-		}).get()
-		minHeight = Math.min.apply(null, heights);
-
-		$("img").height(minHeight);
-	});
-
-	$(document).ready(function() {
-
-		minWidth = $(".thumbnail").width();
-
-		$("img").width(minWidth);
+		$("img").width("100%");
+		$("img").height(0.8*($("img").width()));
 	});
 </script>
-<script src="webjars/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
 
 </head>
 <body>
@@ -43,14 +31,11 @@
 	<jsp:include page="navbar.jsp" />
 
 	<c:forEach var="recipe" items="${recipes}">
-		<div class="col-sm-3 images">
+		<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 images">
 			<div class="caption">
 				<h4>${recipe.recipeName}</h4>
 			</div>
-			<div class="thumbnail">
-				<a href="/recipes/${recipe.id}"><img src="${recipe.image}"
-					class="img-responsive margin" /></a>
-			</div>
+				<a href="/recipes/${recipe.id}"><img src="${recipe.image}" class="img-thumbnail"/></a>
 		</div>
 	</c:forEach>
 

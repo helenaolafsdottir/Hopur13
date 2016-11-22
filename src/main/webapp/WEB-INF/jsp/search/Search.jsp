@@ -12,27 +12,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Uppskriftabankinn</title>
-<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+<link href="webjars/bootstrap/3.3.4/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="/css/main.css" rel="stylesheet">
 
 <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		var heights = $("img").map(function() {
-			return $(this).height();
-		}).get()
-		minHeight = Math.min.apply(null, heights);
-
-		$("img").height(minHeight);
-	});
-
-	$(document).ready(function() {
-
-		minWidth = $(".thumbnail").width();
-
-		$("img").width(minWidth);
-	});
+$(document).ready(function() {
+	$("img").width("100%");
+	$("img").height(0.8*($("img").width()));
+});
 </script>
 </head>
 <body>
@@ -40,14 +29,12 @@
 	<c:choose>
 		<c:when test="${not empty recipes}">
 			<c:forEach var="recipe" items="${recipes}">
-				<div class="col-sm-3 images">
+				<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 images">
 					<div class="caption">
 						<h4>${recipe.recipeName}</h4>
 					</div>
-					<div class="thumbnail">
 						<a href="/recipes/${recipe.id}"><img src="${recipe.image}"
-							class="img-responsive margin" /></a>
-					</div>
+							class="img-thumbnail" /></a>
 				</div>
 			</c:forEach>
 		</c:when>

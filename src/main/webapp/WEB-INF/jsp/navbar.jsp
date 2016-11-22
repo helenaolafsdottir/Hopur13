@@ -10,10 +10,10 @@
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+<link href="http://localhost:8080/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
 	rel="stylesheet" media="screen">
 <link href="/css/main.css" rel="stylesheet" type="text/css">
-<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://localhost:8080/webjars/jquery/1.9.1/jquery.min.js"></script>
 </head>
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -34,7 +34,7 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="/">Home<span class="sr-only">(current)</span></a></li>
+				<li><a href="/">Home<span class="sr-only"></span></a></li>
 				<li class="dropdown"><a href="\recipes" class="dropdown-toggle"
 					data-toggle="dropdown">Recipes <b class="caret"></b></a>
 					<ul class="dropdown-menu">

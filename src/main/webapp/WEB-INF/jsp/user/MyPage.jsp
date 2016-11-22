@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ page import="java.io.*,java.util.*"%>
 
 <html lang="en">
 
@@ -13,22 +14,12 @@
 <meta charset="UTF-8">
 <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		var heights = $("img").map(function() {
-			return $(this).height();
-		}).get()
-		minHeight = Math.min.apply(null, heights);
-
-		$("img").height(minHeight);
-	});
-
-	$(document).ready(function() {
-
-		minWidth = $(".thumbnail").width();
-
-		$("img").width(minWidth);
-	});
+$(document).ready(function() {
+	$("img").width("100%");
+	$("img").height(0.8*($("img").width()));
+});
 </script>
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/navbar.jsp" />
@@ -48,16 +39,14 @@
 	<c:choose>
 
 		<c:when test="${not empty recipes}">
-			<h3 class="text-left">Your Recipes:</h3>
+			<h3 class="text-left">Your Recipes</h3>
 			<c:forEach var="recipe" items="${recipes}">
-				<div class="col-sm-3 images">
+				<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 images">
 					<div class="caption">
 						<h4>${recipe.recipeName}</h4>
 					</div>
-					<div class="thumbnail">
 						<a href="/recipes/${recipe.id}"><img src="${recipe.image}"
-							class="img-responsive margin" /></a>
-					</div>
+							class="img-thumbnail" /></a>
 				</div>
 			</c:forEach>
 		</c:when>
