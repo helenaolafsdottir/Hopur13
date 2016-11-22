@@ -63,4 +63,6 @@ public interface RecipeService {
      * @return A list of the top 6 {@link Recipe}s ordered by counter value
      */
 	List<Recipe> findTop6ByOrderByCounterDesc();
+	
+	List<Recipe> findByRecipeGroup(String search);
 }

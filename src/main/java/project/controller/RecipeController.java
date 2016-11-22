@@ -135,6 +135,95 @@ public class RecipeController {
 		return "redirect:/recipes/" + recipeId;
 	}
 	
-	
+	@RequestMapping(value = "/recipeAppetizers", method = RequestMethod.GET)
+	public String recipeApetizersViewGet(Model model){
+		
+		//Add the 6 most popular recipes to the model
+		model.addAttribute("recipes", recipeService.findByRecipeGroup("dinner"));
+		
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+		
+		//Return the view
+		return "recipe/RecipeAppetizers";
+	}
+	@RequestMapping(value = "/recipeBaking", method = RequestMethod.GET)
+	public String recipeBakingViewGet(Model model){
+		
+		//Add the 6 most popular recipes to the model
+		model.addAttribute("recipes", recipeService.findByRecipeGroup("baking"));
+		
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+		
+		//Return the view
+		return "recipe/RecipeBaking";
+	}
+	@RequestMapping(value = "/recipeBreakfast", method = RequestMethod.GET)
+	public String recipeBreakfastViewGet(Model model){
+		
+		//Add the 6 most popular recipes to the model
+		model.addAttribute("recipes", recipeService.findByRecipeGroup("breakfast"));
+		
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+		
+		//Return the view
+		return "recipe/RecipeBreakfast";
+	}
+	@RequestMapping(value = "/recipeDesserts", method = RequestMethod.GET)
+	public String recipeDessertsViewGet(Model model){
+		
+		//Add the 6 most popular recipes to the model
+		model.addAttribute("recipes", recipeService.findByRecipeGroup("desserts"));
+		
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+		
+		//Return the view
+		return "recipe/RecipeDesserts";
+	}
+	@RequestMapping(value = "/recipeDinners", method = RequestMethod.GET)
+	public String recipeDinnersViewGet(Model model){
+		
+		//Add the 6 most popular recipes to the model
+		model.addAttribute("recipes", recipeService.findByRecipeGroup("dinner"));
+		
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+		
+		//Return the view
+		return "recipe/RecipeDinners";
+	}
+	@RequestMapping(value = "/recipeRaw", method = RequestMethod.GET)
+	public String recipeRawViewGet(Model model){
+		
+		//Add the 6 most popular recipes to the model
+		model.addAttribute("recipes", recipeService.findByRecipeGroup("raw"));
+		
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);
+		
+		//Return the view
+		return "recipe/RecipeRaw";
+	}
 	
 }
