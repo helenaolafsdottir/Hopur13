@@ -139,7 +139,7 @@ public class RecipeController {
 	public String recipeApetizersViewGet(Model model){
 		
 		//Add the 6 most popular recipes to the model
-		model.addAttribute("recipes", recipeService.findByRecipeGroup("dinner"));
+		model.addAttribute("recipes", recipeService.findByRecipeGroup("appetizers"));
 		
 		//This functionality is for the login/logout button
 		//Get the logged in username so we can see if the user has logged in or not
