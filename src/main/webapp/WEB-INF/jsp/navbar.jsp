@@ -38,12 +38,12 @@
 				<li class="dropdown"><a href="\recipes" class="dropdown-toggle"
 					data-toggle="dropdown">Recipes <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="/recipes">Appetizers</a></li>
-						<li><a href="/recipes">Baking</a></li>
-						<li><a href="/recipes">Breakfast</a></li>
-						<li><a href="/recipes">Desserts</a></li>
-						<li><a href="/recipes">Dinner</a></li>
-						<li><a href="/recipes">Raw</a></li>
+						<li><a href="/recipeAppetizers">Appetizers</a></li>
+						<li><a href="/recipeBaking">Baking</a></li>
+						<li><a href="/recipeBreakfast">Breakfast</a></li>
+						<li><a href="/recipeDesserts">Desserts</a></li>
+						<li><a href="/recipeDinners">Dinner</a></li>
+						<li><a href="/recipeRaw">Raw</a></li>
 					</ul></li>
 				<sf:form class="navbar-form navbar-left" method="POST"
 					commandName="recipe" action="/search">

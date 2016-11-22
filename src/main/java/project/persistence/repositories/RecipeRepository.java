@@ -15,12 +15,15 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findByUsername(String search);
     List<Recipe> findByRecipeNameContaining(String search);
     List<Recipe> findByIngredientsContaining(String search);
+    List<Recipe> findByRecipeGroup(String search);
     List<Recipe> findAll();
     
     Recipe findOne(Long id);
     
     Recipe findByRecipeName(String recipeName);
     Recipe findById(Long id);
+    
+    
     
     List<Recipe> findTop6ByOrderByCounterDesc();
 }

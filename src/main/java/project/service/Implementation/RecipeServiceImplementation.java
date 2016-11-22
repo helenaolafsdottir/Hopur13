@@ -54,6 +54,7 @@ public class RecipeServiceImplementation implements RecipeService{
 	    public Recipe findByRecipeName(String recipeName) {
 			return repository.findByRecipeName(recipeName);
 		}
+	    
 	    public Recipe findById(Long id) {
 			return repository.findById(id);
 		}
@@ -62,7 +63,10 @@ public class RecipeServiceImplementation implements RecipeService{
 		public List<Recipe> findByUsername(String search) {
 			return repository.findByUsername(search);
 		}
-
+		@Override
+		public List<Recipe> findByRecipeGroup(String search) {
+			return repository.findByRecipeGroup(search);
+		}
 
 		@Override
 		public List<Recipe> findTop6ByOrderByCounterDesc() {
