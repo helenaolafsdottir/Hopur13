@@ -31,8 +31,6 @@ $(document).ready(function() {
 	<div class="btn-group btn-group-justified text-center">
 		<a href="/createRecipe" class="myButton">Create Recipe</a>
 		<a href="/changePassword" class="myButton">Change password</a>
-		<a href="/favourite" class="myButton">Favourite</a>
-		<a href="/following" class="myButton">Following</a>
 	</div>
 
 
