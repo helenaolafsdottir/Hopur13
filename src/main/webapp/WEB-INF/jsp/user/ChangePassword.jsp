@@ -48,7 +48,7 @@
 	<main>
 		<sf:form method="POST" action="/changePassword">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				<table class="create_recipe_table">
+				<table class="create_blog_table">
 					<tr>
 						<td>New password:</td>
 						<td><input name="resetPassword" type="password" placeholder="New password here!"/></td>
