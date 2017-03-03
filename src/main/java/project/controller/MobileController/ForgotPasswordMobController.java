@@ -1,4 +1,4 @@
-package project.controller;
+package project.controller.MobileController;
 
 import java.util.Calendar;
 import java.util.UUID;
@@ -9,44 +9,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import project.persistence.entities.PasswordResetToken;
 import project.persistence.entities.User;
 import project.service.UserService;
 
-@Controller
-public class ForgotPasswordController {
+@RestController
+	public class ForgotPasswordMobController {
 	UserService userService;
 	private JavaMailSender mailSender;
 	private final String emailFrom = "uppskriftabankinn@gmail.com";
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public ForgotPasswordController(UserService userService, JavaMailSender mailSender, BCryptPasswordEncoder passwordEncoder){
+	public ForgotPasswordMobController(UserService userService, JavaMailSender mailSender, BCryptPasswordEncoder passwordEncoder){
 		this.userService = userService;
 		this.mailSender = mailSender;
 		this.passwordEncoder = passwordEncoder;
 	}
 	
-	@RequestMapping(value="/forgotPassword", method = RequestMethod.GET)
-	public String forgotViewGet(Model model){
-		return "user/ForgotPassword";
-	}
-	
-	@RequestMapping(value="/forgotPassword", method = RequestMethod.POST)
+	@RequestMapping(value="/m/forgotPassword", method=RequestMethod.POST)
 	public String forgotViewPost(@RequestParam("emailForgot") String emailForgotPassword, Model model, HttpServletRequest request, RedirectAttributes redir){
 		User user = userService.findByEmail(emailForgotPassword);
 		if(user == null){
 			model.addAttribute("resultMessage", "Email does not exist!");
 		
-			return "user/ForgotPassword";
+			return "[]";
 		}
 		
 		String token = UUID.randomUUID().toString();
@@ -56,7 +50,7 @@ public class ForgotPasswordController {
 		mailSender.send(email);
 		model.addAttribute("resultMessage", "Password reset email sent!");
 		System.out.println("sent");
-		return "user/ForgotPassword";
+		return "[]";
 	}
 	
 	private SimpleMailMessage constructResetTokenEmail(String contextPath, String token, User user){
@@ -70,14 +64,8 @@ public class ForgotPasswordController {
 		return email;
 	}
 	
-	@RequestMapping(value="/resetPassword", method = RequestMethod.GET)
-	public String resetPasswordGet(Model model){
-		System.out.println("get");
-		return "user/ResetPassword";
-	}
-
 	
-	@RequestMapping(value="/resetPassword", method = RequestMethod.POST)
+	@RequestMapping(value="/m/resetPassword", method=RequestMethod.POST)
 	public String resetPasswordPost(@RequestParam(value="id") Long urlId, @RequestParam(value="token") String urlToken, @RequestParam("resetPassword") String resetPassword,
 			@RequestParam("resetPasswordAgain") String resetPasswordAgain, Model model, RedirectAttributes redir){
 		System.out.println("post");
@@ -107,7 +95,8 @@ public class ForgotPasswordController {
 		userService.save(user);
 		System.out.println("4");
 		redir.addFlashAttribute("resultMessage", "Password reset successful");
-		return "redirect:/login";
+		return "[]";
 	}
+	
 	
 }
