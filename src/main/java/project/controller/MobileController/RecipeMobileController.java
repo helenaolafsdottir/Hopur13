@@ -1,6 +1,7 @@
 package project.controller.MobileController;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 import project.CreateRecipeValidator;
 import project.persistence.entities.Recipe;
+import project.persistence.entities.RecipeGroup;
 import project.service.RecipeService;
 
 @RestController
@@ -27,7 +31,8 @@ public class RecipeMobileController {
 			this.recipeValidator = recipeValidator;
 			this.recipeService = recipeService;
 		}
-
+	
+	
 	
 	
 	@RequestMapping(value="/m/", method = RequestMethod.GET)
@@ -58,10 +63,43 @@ public class RecipeMobileController {
 		return "[]";
 	}
 	
-	@RequestMapping(value="/m/recipes/{id}", method = RequestMethod.GET)
-	public String recipesGetRecipeFromId(@PathVariable Long id,
-            Model model){
 
+    @RequestMapping(value = "/m/recipeGroupsList", method = RequestMethod.GET)
+    public List<RecipeGroup> recipesGetGroups(Model model){
+    	
+    	List<RecipeGroup> listRecipeGroups = new ArrayList<RecipeGroup>();
+    	
+    	
+    	RecipeGroup recipeGroup1 = new RecipeGroup();
+    	RecipeGroup recipeGroup2 = new RecipeGroup();
+    	RecipeGroup recipeGroup3= new RecipeGroup();
+    	RecipeGroup recipeGroup4 = new RecipeGroup();
+    	RecipeGroup recipeGroup5 = new RecipeGroup();
+    	RecipeGroup recipeGroup6 = new RecipeGroup();
+    	
+    	recipeGroup1.setGroupName("Appetizers");
+    	recipeGroup2.setGroupName("Baking");
+    	recipeGroup3.setGroupName("Breakfast");
+    	recipeGroup4.setGroupName("Desserts");
+    	recipeGroup5.setGroupName("Dinner");
+    	recipeGroup6.setGroupName("Raw");
+    	
+    	listRecipeGroups.add(recipeGroup1);
+    	listRecipeGroups.add(recipeGroup2);
+    	listRecipeGroups.add(recipeGroup3);
+    	listRecipeGroups.add(recipeGroup4);
+    	listRecipeGroups.add(recipeGroup5);
+    	listRecipeGroups.add(recipeGroup6);
+    	
+    	return listRecipeGroups;
+    	
+    }
+
+
+	@RequestMapping(value="/m/recipes/{id}", method = RequestMethod.GET)
+	public Recipe recipesGetRecipeFromId(@PathVariable Long id,
+            Model model){
+/*
 	// Get all recipes with this name and add them to the model
 	model.addAttribute("recipes", recipeService.findById(id));
 	
@@ -69,13 +107,15 @@ public class RecipeMobileController {
 	Recipe recipehitscounter = recipeService.findById(id);
 	recipehitscounter.counter++;
 	recipeService.save(recipehitscounter);
-	
+	*/
+		
 	//This functionality is for the login/logout button
 	//Get the logged in username so we can see if the user has logged in or not
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	String loggedInUser = auth.getName(); //get logged in username
 	model.addAttribute("loggedInUser", loggedInUser);
-		return "[]";
+	
+	return recipeService.findById(id);
 	}
 	
 	@RequestMapping(value="/m/createRecipe", method = RequestMethod.GET)
