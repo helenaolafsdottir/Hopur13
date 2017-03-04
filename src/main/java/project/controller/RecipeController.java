@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import project.CreateRecipeValidator;
 import project.persistence.entities.Recipe;
+import project.persistence.entities.RecipeGroup;
 import project.service.RecipeService;
 
 
@@ -66,6 +67,8 @@ public class RecipeController {
 		return "recipe/Recipes";
 	}
     
+
+    
     @RequestMapping(value = "/recipes/{id}", method = RequestMethod.GET)
     public String recipesGetRecipeFromId(@PathVariable Long id,
                                              Model model){
@@ -103,7 +106,8 @@ public class RecipeController {
 		//Return the view
 		return "recipe/CreateRecipe";
 	}
-	
+   
+
 
 	@RequestMapping(value = "/createRecipe", method = RequestMethod.POST)
 	public String createRecipeViewPost(@ModelAttribute("recipe") Recipe formRecipe, BindingResult bindingResult, Model model){
