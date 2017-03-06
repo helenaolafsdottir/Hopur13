@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 public class RecipeGroup {
 
 	public String groupName;
+	public String image;
 	
 	public RecipeGroup() {
 	    }    
@@ -18,5 +19,13 @@ public class RecipeGroup {
 
 	public void setGroupName(String groupName) {
 	    this.groupName = groupName;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+	    this.image = image;
 	}
 }
