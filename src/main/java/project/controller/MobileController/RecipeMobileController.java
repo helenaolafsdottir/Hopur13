@@ -1,15 +1,20 @@
 package project.controller.MobileController;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -18,6 +23,7 @@ import project.CreateRecipeValidator;
 import project.persistence.entities.Recipe;
 import project.persistence.entities.RecipeGroup;
 import project.service.RecipeService;
+
 
 @RestController
 public class RecipeMobileController {
@@ -139,6 +145,37 @@ public class RecipeMobileController {
 		return "[]";
 	}
 	
+	@RequestMapping(value = "/m/createRecipe", method=RequestMethod.POST)
+	public ResponseEntity<String> createRecipe(@RequestBody String jsonStr) throws JSONException {
+	    System.out.println("jsonStr:  " + jsonStr);
+	    JSONObject jsonObject = new JSONObject(jsonStr);
+	    
+	    Recipe formRecipe = new Recipe();
+	    formRecipe.setRecipeName(jsonObject.getString("recipeName"));
+	    formRecipe.setRecipeGroup(jsonObject.getString("recipeGroup"));
+	    formRecipe.setIngredients(jsonObject.getString("Ingredients"));
+	    formRecipe.setInstructions(jsonObject.getString("Instructions"));
+	    formRecipe.setImage(jsonObject.getString("Image"));
+	    
+	    System.out.println(formRecipe.recipeName);
+		//Validator for the createRecipe form
+		//recipeValidator.validate(formRecipe, bindingResult);
+		//if(bindingResult.hasErrors()){
+			//return "recipe/CreateRecipe";
+		//}	
+		/*
+		//Add counter and username to the recipe and save it to the db
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String username = auth.getName(); //get logged in username
+		formRecipe.username = username;
+		formRecipe.counter = 0;*/
+	    String username = jsonObject.getString("username");
+		recipeService.save(formRecipe);
+	    
+	    return new ResponseEntity<String>(username, HttpStatus.OK);
+	    
+	}  
+	/*
 	@RequestMapping(value="m/createRecipe", method = RequestMethod.POST)
 	public String createRecipeViewPost(@ModelAttribute("recipe") Recipe formRecipe, BindingResult bindingResult, Model model){
 		
@@ -166,7 +203,7 @@ public class RecipeMobileController {
 		model.addAttribute("loggedInUser", loggedInUser);
 		return "[]";
 	}
-	
+	*/
 	@RequestMapping(value="/m/recipeappetizers", method = RequestMethod.GET)
 	public List<Recipe> recipeApetizersViewGet(Model model){
 		
