@@ -2,6 +2,7 @@ package project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,6 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers("/myPage").access("hasRole('ROLE_USER')")
+				.antMatchers("/m/**").permitAll()
 				.anyRequest().permitAll()
 				.and()
 			.formLogin()
@@ -31,8 +33,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout().logoutSuccessUrl("/login?logout")
 				.permitAll()
 			.and()
-				.csrf();
+				.csrf().disable();
 	}
+			
+	
+/*	 @Configuration
+	    @Order(1)
+	    public static class ApiWebSecurityConfig extends WebSecurityConfigurerAdapter{
+	    	@Override
+	    	protected void configure(HttpSecurity http) throws Exception {
+	            http
+             .antMatcher("/m/**")
+             .authorizeRequests()
+             	.antMatchers("/m/").permitAll()
+                 .anyRequest().authenticated()
+                 .and()
+             .httpBasic();	
+	    	}
+	    	
+	    }*/
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

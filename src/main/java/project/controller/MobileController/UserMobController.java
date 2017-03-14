@@ -7,7 +7,11 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -50,8 +54,28 @@ import project.service.UserService;
 		return userService.findByUserName(username);
 	}
 	
+	public User parseUserData(String jsonString) throws JSONException {
+		System.out.println("jsonStr:  " + jsonString);
+	    JSONObject jsonObject = new JSONObject(jsonString);
+		User user = new User();
+		//formRecipe.setInstructions(jsonObject.getString("Instructions"));
+		user.setUserName(jsonObject.getString("userName"));
+		user.setPassword(jsonObject.getString("password"));
+		user.setPasswordConfirm(jsonObject.getString("passwordConfirm"));
+		user.setEmail(jsonObject.getString("email"));
+		user.setName(jsonObject.getString("name"));
+		
+		return user;
+	}
+	
 	@RequestMapping(value="/m/createuser", method = RequestMethod.POST)
-	public String createUser(@RequestBody User userInput, @ModelAttribute("user") User formUser, BindingResult bindingResult, Model model){
+	public ResponseEntity<String> createuser(@RequestBody String jsonString) throws JSONException {
+
+		User formUser = this.parseUserData(jsonString);
+		JSONObject jsonObject = this.userValidator.validateAndroid(formUser);
+		if(jsonObject.length() > 0){
+			return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK);
+		}
 		//create date
 		Date createDate = new Date();
 		//set create date in formUser
@@ -59,11 +83,11 @@ import project.service.UserService;
 		//the user starts as enabled user
 		formUser.setEnabled(1);
 		//validates the user
-		userValidator.validate(formUser, bindingResult);
+		//userValidator.validate(formUser, bindingResult);
 		//if validation fails, return to form
-		if(bindingResult.hasErrors()){
+		/*if(bindingResult.hasErrors()){
 			return "user/Users";
-		}
+		}*/
 		//get password
 		String unencodedPassword = formUser.getPassword();
 		//password is encoded
@@ -72,13 +96,13 @@ import project.service.UserService;
 		formUser.setPassword(encodedPassword);
 		formUser.setPasswordConfirm(encodedPassword);
 		
-		if(userService.findByEmail(formUser.getEmail()) != null){
+		/*if(userService.findByEmail(formUser.getEmail()) != null){
 			model.addAttribute("resultMessage", "Email already exists");
 			return "user/Users";
 		}
 		if(userService.findByUserName(formUser.getUserName()) != null){
 			model.addAttribute("resultMessage", "Username already exists");
-		}
+		}*/
 		//the formUser is saved and the saved user returned
 		User savedUser = userService.save(formUser);
 		//get id from the saved user
@@ -94,10 +118,10 @@ import project.service.UserService;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String loggedInUser = auth.getName(); //get logged in username
 		//loggedInUser is added to model
-		model.addAttribute("loggedInUser", loggedInUser);
+		//model.addAttribute("loggedInUser", loggedInUser);
 		//user is directed to login page
 		
-		return "[]";
+		return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
 	
 

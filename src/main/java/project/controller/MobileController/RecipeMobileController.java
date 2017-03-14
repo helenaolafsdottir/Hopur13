@@ -38,9 +38,6 @@ public class RecipeMobileController {
 			this.recipeService = recipeService;
 		}
 	
-	
-	
-	
 	@RequestMapping(value="/m/", method = RequestMethod.GET)
 	public String indexViewGet(Model model){
 		

@@ -3,6 +3,8 @@ package project;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -21,6 +23,31 @@ public class UserValidator implements Validator{
 	public boolean supports(Class<?> aClass){
 		return User.class.equals(aClass);
 	}
+	
+	public JSONObject validateAndroid(User user) throws JSONException{
+		JSONObject jsonObject = new JSONObject();
+		if (user.getUserName().length() <= 3 || user.getUserName().length() > 32 ) {
+			jsonObject.append("userName", "Username has to be between 4 and 32 letters");
+		}
+		
+		if(userService.findByUserName(user.getUserName())!= null){
+			jsonObject.append("userName", "Username is taken");
+		}
+		
+		if(!user.getPasswordConfirm().equals(user.getPassword())) {
+			jsonObject.append("passwordConfirm", "Passwords do not match");
+		}
+		
+		if(!isValidEmailAddress(user.getEmail())){
+			jsonObject.append("email", "Email not valid");
+		}
+		if(userService.findByEmail(user.getEmail()) != null){
+			jsonObject.append("email", "Email address is taken");
+		}
+		return jsonObject;
+	}
+	
+	
 	/**
 	 * This method validates the user
 	 */
@@ -28,12 +55,13 @@ public class UserValidator implements Validator{
 	public void validate(Object o, Errors errors) {
 		User user = (User) o;
 		//if(user != null) return;
+		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "NotEmpty");
 		if (user.getUserName().length() <= 3 || user.getUserName().length() > 32 ) {
 			errors.rejectValue("userName", "Size.user.userName");
 		}
 		
-		if(!userService.findByName(user.getUserName()).isEmpty()){
+		if(userService.findByUserName(user.getUserName())!= null){
 			errors.rejectValue("userName", "Duplicate.user.userName");
 		}
 		
@@ -51,6 +79,8 @@ public class UserValidator implements Validator{
 		}
 		
 	}
+	
+
 	/**
 	 * Checks if email address is valid
 	 * @param emailAddress is the specific email
