@@ -156,5 +156,27 @@ import project.service.UserService;
 		return "[]";
 	}
 	
+	@RequestMapping(value="/m/login", method = RequestMethod.POST)
+	public ResponseEntity<String> login(@RequestBody String jsonString) throws JSONException {
+		JSONObject jsonObject = new JSONObject(jsonString);
+		String loginUsername = jsonObject.getString("userName");
+		String loginPassword = jsonObject.getString("password");
+		String encodedLoginPassword = passwordEncoder.encode(loginPassword);
+		
+		if(userService.findByUserName(loginUsername)==null){
+			return new ResponseEntity<String>("No user with that username", HttpStatus.OK);
+		}
+		
+		User user = userService.findByUserName(loginUsername);
+		String userPassword = user.getPassword();
+		
+		if(passwordEncoder.matches(loginPassword, userPassword)){
+			return new ResponseEntity<String>("OK", HttpStatus.OK);
+		}
+		
+		
+		return new ResponseEntity<String>("No user with that username and password", HttpStatus.OK);
+	}
+	
 	
 }
