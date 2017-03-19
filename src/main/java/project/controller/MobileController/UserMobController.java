@@ -134,7 +134,7 @@ import project.service.UserService;
 	
 
 	
-	@RequestMapping(value="/m/changePassword", method=RequestMethod.POST)
+	/*@RequestMapping(value="/m/changePassword", method=RequestMethod.POST)
 	public String changePasswordViewPost(Model model, @RequestParam("resetPassword") String resetPassword, @RequestParam("resetPasswordAgain") String resetPasswordAgain){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String loggedInUser = auth.getName();
@@ -154,7 +154,7 @@ import project.service.UserService;
 		userService.save(user);
 		model.addAttribute("resultMessage", "Password has been reset!");
 		return "[]";
-	}
+	}*/
 	
 	@RequestMapping(value="/m/login", method = RequestMethod.POST)
 	public ResponseEntity<String> login(@RequestBody String jsonString) throws JSONException {
@@ -176,6 +176,32 @@ import project.service.UserService;
 		
 		
 		return new ResponseEntity<String>("No user with that username and password", HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/m/changepassword", method = RequestMethod.POST)
+	public ResponseEntity<String> changePassword(@RequestBody String jsonString) throws JSONException {
+		JSONObject jsonObject = new JSONObject(jsonString);
+		String cpUsername = jsonObject.getString("userName");
+		String cpPassword = jsonObject.getString("password");
+		String cpPasswordAgain = jsonObject.getString("passwordConfirm");
+		String cpOldPassword = jsonObject.getString("oldPassword");
+		if(!cpPasswordAgain.equals(cpPassword)){
+			return new ResponseEntity<String>("Passwords do not match", HttpStatus.OK);
+		}
+		String encodedLoginPassword = passwordEncoder.encode(cpPassword);
+		
+		User user = userService.findByUserName(cpUsername);
+		String oldOldPassword = user.getPassword();
+		if(passwordEncoder.matches(cpOldPassword, oldOldPassword)){
+			user.setPassword(encodedLoginPassword);
+			user.setPasswordConfirm(encodedLoginPassword);
+			userService.save(user);
+		}
+		else{
+			return new ResponseEntity<String>("Old password not correct", HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<String>("OK", HttpStatus.OK);
 	}
 	
 	
