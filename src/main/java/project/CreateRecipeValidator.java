@@ -1,6 +1,8 @@
 package project;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -8,7 +10,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import project.persistence.entities.Recipe;
-
+import project.persistence.entities.User;
 import project.service.RecipeService;
 
 
@@ -22,6 +24,36 @@ public class CreateRecipeValidator implements Validator{
 	public boolean supports(Class<?> aClass){
 		return Recipe.class.equals(aClass);
 	}
+	
+	
+	public JSONObject validateAndroid(Recipe recipe) throws JSONException{
+		JSONObject jsonObject = new JSONObject();
+		
+		if (recipe.getRecipeName().length() == 0) {
+			jsonObject.append("recipeName", "Recipe name can't be empty");
+		}
+		
+		if(recipeService.findByRecipeName(recipe.getRecipeName())!= null){
+			jsonObject.append("recipeName", "Recipe name is taken");
+		}
+		
+		if (recipe.getIngredients().length() == 0) {
+			jsonObject.append("ingredients", "Ingredients field can't be empty");
+		}
+		
+		if (recipe.getInstructions().length() == 0) {
+			jsonObject.append("instructions", "Instructions field can't be empty");
+		}
+		
+		if (recipe.getImage().length() == 0) {
+			jsonObject.append("image", "Image field can't be empty");
+		}
+		
+		return jsonObject;
+	}
+	
+	
+	
 	
 	@Override
 	public void validate(Object o, Errors errors) {

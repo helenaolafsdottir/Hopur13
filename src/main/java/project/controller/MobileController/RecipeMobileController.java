@@ -22,6 +22,7 @@ import java.util.List;
 import project.CreateRecipeValidator;
 import project.persistence.entities.Recipe;
 import project.persistence.entities.RecipeGroup;
+import project.persistence.entities.User;
 import project.service.RecipeService;
 
 
@@ -64,6 +65,17 @@ public class RecipeMobileController {
 		String loggedInUser = auth.getName(); //get logged in username
 		model.addAttribute("loggedInUser", loggedInUser);
 		return "[]";
+	}
+	
+	
+	@RequestMapping(value="/m/recipes/getId/{recipeName}", method = RequestMethod.GET)
+	public Recipe recipeViewGet(@PathVariable String recipeName, Model model){
+		
+		System.out.println("Ég komst hingað!");	
+		Recipe recipe = recipeService.findByRecipeName(recipeName);
+		System.out.println(recipe.getRecipeName());
+		
+		return recipeService.findByRecipeName(recipeName);
 	}
 	
 
@@ -128,23 +140,75 @@ public class RecipeMobileController {
 	return recipeService.findById(id);
 	}
 	
-	@RequestMapping(value="/m/createRecipe", method = RequestMethod.GET)
-	public String createRecipeViewGet(Model model){
+	@RequestMapping(value="/m/createRecipe/{recipeName}/{recipeGroup}/{ingredients}/{instructions}/{image}", method = RequestMethod.GET)
+	public Recipe createRecipeViewGet(@PathVariable String recipeName, @PathVariable String recipeGroup, @PathVariable String ingredients,
+			@PathVariable String instructions, @PathVariable String image, Model model){
 		
 		//Add a new recipe to the model for the form
-		model.addAttribute("recipe", new Recipe());
-		
+		//model.addAttribute("recipe", new Recipe());
+		System.out.println("Aloha");
+		//Save the recipe from the user
+		Recipe formRecipe = new Recipe();
+	    formRecipe.setRecipeName(recipeName);
+	    formRecipe.setRecipeGroup(recipeGroup);
+	    formRecipe.setIngredients(ingredients);
+	    formRecipe.setInstructions(instructions);
+	    formRecipe.setImage(image);
+	    formRecipe.setUsername("helena");
+	    recipeService.save(formRecipe);
+	    System.out.println("Aloha2");
 		//This functionality is for the login/logout button
 		//Get the logged in username so we can see if the user has logged in or not
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String loggedInUser = auth.getName(); //get logged in username
-		model.addAttribute("loggedInUser", loggedInUser);
-		return "[]";
+		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		//String loggedInUser = auth.getName(); //get logged in username
+		//model.addAttribute("loggedInUser", loggedInUser);
+	    
+	    
+	    //Find the recipe to display it for the user
+	    Recipe newRecipe = recipeService.findByRecipeName(recipeName);
+	    System.out.println("Aloha3");
+	    Long newRecipeId = newRecipe.getId();
+	    newRecipe.setId(newRecipeId);
+	    System.out.println(newRecipe.getId());
+	    
+		return newRecipe;
+	}
+	
+	public Recipe parseRecipeData(String jsonString) throws JSONException {
+		System.out.println("jsonStr:  " + jsonString);
+	    JSONObject jsonObject = new JSONObject(jsonString);
+	    
+	    System.out.println(jsonObject.getString("recipeName"));
+	    System.out.println(jsonObject.getString("recipeGroup"));
+	    System.out.println(jsonObject.getString("instructions"));
+	    System.out.println(jsonObject.getString("ingredients"));
+	    System.out.println(jsonObject.getString("image"));
+	    
+	    
+		Recipe recipe = new Recipe();
+		
+		recipe.setRecipeName(jsonObject.getString("recipeName"));
+		recipe.setRecipeGroup(jsonObject.getString("recipeGroup"));
+		recipe.setIngredients(jsonObject.getString("ingredients"));
+		recipe.setInstructions(jsonObject.getString("instructions"));
+		recipe.setImage(jsonObject.getString("image"));
+		recipe.setUsername(jsonObject.getString("username"));
+		
+		return recipe;
 	}
 	
 	@RequestMapping(value = "/m/createRecipe", method=RequestMethod.POST)
-	public ResponseEntity<String> createRecipe(@RequestBody String jsonStr) throws JSONException {
-	    System.out.println("jsonStr:  " + jsonStr);
+	public ResponseEntity<String> createRecipe(@RequestBody String jsonString) throws JSONException {
+	    System.out.println("jsonStr:  " + jsonString);
+	    
+	    Recipe formRecipe = this.parseRecipeData(jsonString);
+	    
+		JSONObject jsonObject = this.recipeValidator.validateAndroid(formRecipe);
+		if(jsonObject.length() > 0){
+			return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.OK); //returns the error message to the client side
+		}
+	    
+	    /**
 	    JSONObject jsonObject = new JSONObject(jsonStr);
 	    
 	    Recipe formRecipe = new Recipe();
@@ -155,22 +219,19 @@ public class RecipeMobileController {
 	    formRecipe.setImage(jsonObject.getString("Image"));
 	    
 	    System.out.println(formRecipe.recipeName);
-		//Validator for the createRecipe form
-		//recipeValidator.validate(formRecipe, bindingResult);
-		//if(bindingResult.hasErrors()){
-			//return "recipe/CreateRecipe";
-		//}	
-		/*
+	    
+	    **/
+
+		
 		//Add counter and username to the recipe and save it to the db
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String username = auth.getName(); //get logged in username
-		formRecipe.username = username;
-		formRecipe.counter = 0;*/
-	    String username = jsonObject.getString("username");
+		formRecipe.counter = 0;
+		System.out.println(formRecipe.getUsername());
+	    
 		recipeService.save(formRecipe);
 	    
-	    return new ResponseEntity<String>(username, HttpStatus.OK);
+	    return new ResponseEntity<String>("OK", HttpStatus.OK); //returns status "OK" to the client side
 	    
+	
 	}  
 	/*
 	@RequestMapping(value="m/createRecipe", method = RequestMethod.POST)
@@ -201,7 +262,7 @@ public class RecipeMobileController {
 		return "[]";
 	}
 	*/
-	@RequestMapping(value="/m/recipeappetizers", method = RequestMethod.GET)
+	@RequestMapping(value="/m/recipe/appetizers", method = RequestMethod.GET)
 	public List<Recipe> recipeApetizersViewGet(Model model){
 		
 		//Add the 6 most popular recipes to the model
@@ -216,7 +277,7 @@ public class RecipeMobileController {
 		return recipeService.findByRecipeGroup("appetizers");
 	}
 	
-	@RequestMapping(value="/m/recipebaking", method = RequestMethod.GET)
+	@RequestMapping(value="/m/recipe/baking", method = RequestMethod.GET)
 	public List<Recipe> recipeBakingViewGet(Model model){
 		
 		//Add the 6 most popular recipes to the model
@@ -230,7 +291,7 @@ public class RecipeMobileController {
 		return recipeService.findByRecipeGroup("baking");
 	}
 	
-	@RequestMapping(value="/m/recipebreakfast", method = RequestMethod.GET)
+	@RequestMapping(value="/m/recipe/breakfast", method = RequestMethod.GET)
 	public List<Recipe> recipeBreakfastViewGet(Model model){
 		
 		//Add the 6 most popular recipes to the model
@@ -244,7 +305,7 @@ public class RecipeMobileController {
 		return recipeService.findByRecipeGroup("breakfast");
 	}
 	
-	@RequestMapping(value="/m/recipedesserts", method = RequestMethod.GET)
+	@RequestMapping(value="/m/recipe/desserts", method = RequestMethod.GET)
 	public List<Recipe> recipeDessertsViewGet(Model model){
 		
 		//Add the 6 most popular recipes to the model
@@ -258,7 +319,7 @@ public class RecipeMobileController {
 		return recipeService.findByRecipeGroup("desserts");
 	}
 	
-	@RequestMapping(value="/m/recipedinners", method = RequestMethod.GET)
+	@RequestMapping(value="/m/recipe/dinners", method = RequestMethod.GET)
 	public List<Recipe> recipeDinnersViewGet(Model model){
 		
 		//Add the 6 most popular recipes to the model
@@ -272,7 +333,7 @@ public class RecipeMobileController {
 		return recipeService.findByRecipeGroup("dinner");
 	}
 	
-	@RequestMapping(value="/m/reciperaw", method = RequestMethod.GET)
+	@RequestMapping(value="/m/recipe/raw", method = RequestMethod.GET)
 	public List<Recipe> recipeRawViewGet(Model model){
 		
 		//Add the 6 most popular recipes to the model
@@ -284,5 +345,36 @@ public class RecipeMobileController {
 		String loggedInUser = auth.getName(); //get logged in username
 		model.addAttribute("loggedInUser", loggedInUser);
 		return recipeService.findByRecipeGroup("raw");
+	}
+	@RequestMapping(value="/m/recipeByUser/{user}", method = RequestMethod.GET)
+	public List<Recipe> recipesFindByUserViewGet(@PathVariable String user, Model model){
+		
+		//Add the 6 most popular recipes to the model
+		//model.addAttribute("recipes", recipeService.findByRecipeGroup("raw"));
+		
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
+		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);*/
+		return recipeService.findByUsername(user);
+	}
+	@RequestMapping(value="/m/recipes/delete/{id}", method = RequestMethod.GET)
+	public String recipeDeleteViewGet(@PathVariable Long id, Model model){
+		
+		//Add the 6 most popular recipes to the model
+		//model.addAttribute("recipes", recipeService.findByRecipeGroup("raw"));
+		
+		//This functionality is for the login/logout button
+		//Get the logged in username so we can see if the user has logged in or not
+		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String loggedInUser = auth.getName(); //get logged in username
+		model.addAttribute("loggedInUser", loggedInUser);*/
+		
+		Recipe recipe = recipeService.findById(id);
+		recipeService.delete(recipe);
+		
+		return "Ok";
+
 	}
 }
