@@ -1,7 +1,10 @@
 package project.service.Implementation;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +33,16 @@ public class SearchServiceImplementation implements SearchService {
 	 */
 	@Override
 	public List<Recipe> findAllWithCond(String searchcond, String search) {
-		if (searchcond.equals("username")) {
+		Set<Recipe> recipeSet = new HashSet<Recipe>();
+		if(!("".equals(search))){
+			recipeSet.addAll(repository.findByUsername(search));
+			recipeSet.addAll(repository.findByRecipeNameContaining(search));
+			recipeSet.addAll(repository.findByIngredientsContaining(search));
+			List<Recipe> recipeList = new ArrayList<Recipe>();
+			recipeList.addAll(recipeSet);
+			return recipeList;
+		}
+		/*if (searchcond.equals("username")) {
 			List<Recipe> recipes = repository.findByUsername(search);
 			return recipes;
 	
@@ -42,7 +54,7 @@ public class SearchServiceImplementation implements SearchService {
 			List<Recipe> recipes = repository.findByIngredientsContaining(search);
 			return recipes;
 			
-		} else {
+		}*/ else {
 			List<Recipe> recipes = null;
 			return recipes;
 		}

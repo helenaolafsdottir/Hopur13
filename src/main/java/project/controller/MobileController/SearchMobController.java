@@ -46,10 +46,10 @@ public class SearchMobController {
 	}*/
 	
 	@RequestMapping(value="m/search", method = RequestMethod.GET)
-	public List<Recipe> search(@RequestParam("searchcond") String searchcond, @RequestParam("search") String search) throws JSONException{
+	public List<Recipe> search(@RequestParam("search") String search) throws JSONException{
 		
 		
-		return searchService.findAllWithCond(searchcond, search);
+		return searchService.findAllWithCond(null, search);
 		
 	}
 	
